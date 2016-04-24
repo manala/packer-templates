@@ -10,7 +10,7 @@
             "type"                 : "virtualbox-iso",
             "guest_os_type"        : "Debian_64",
             "format"               : "ovf",
-            "headless"             : false,
+            "headless"             : true,
             "iso_urls"             : [
                 "http://cdimage.debian.org/debian-cd/8.4.0/amd64/iso-cd/debian-8.4.0-amd64-netinst.iso"
             ],
@@ -19,7 +19,7 @@
             "disk_size"            : 65536,
             "hard_drive_interface" : "sata",
             "ssh_username"         : "root",
-            "ssh_wait_timeout"     : "60m",
+            "ssh_wait_timeout"     : "30m",
             "shutdown_command"     : "/sbin/shutdown -h now",
             "http_directory"       : "http",
             "boot_command"         : [
