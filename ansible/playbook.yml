@@ -97,8 +97,8 @@
     #############
 
     manala_ohmyzsh_users:
-      - user:     vagrant
-        group:    vagrant
+      - user:     app
+        group:    app
         template: users/manala.j2
 
     #######
