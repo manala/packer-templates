@@ -1,0 +1,131 @@
+---
+
+- hosts: all
+
+  vars:
+
+    # Set by packer
+    # =============
+    #_description: Foo bar
+    #_version:     x.x.x
+    #_type:        virtualbox|docker
+
+    ########
+    # Sudo #
+    ########
+
+    manala_sudo_sudoers:
+      - file: app
+        config:
+          - 'app ALL=NOPASSWD:ALL'
+
+    #########
+    # Users #
+    #########
+
+    manala_users_groups:
+      - app
+
+    manala_users:
+      - name:   app
+        group:  app
+        groups: ['sudo']
+        authorized_keys:
+          - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
+
+
+    # TO REMOVE IN FAVOR OF SKELETON ROLE !!! #
+
+
+    ########
+    # Motd #
+    ########
+
+    manala_motd_template: template/manala.j2
+    manala_motd:          "{{ _description }} - {{ _version }}"
+
+    ############
+    # Timezone #
+    ############
+
+    manala_timezone: Etc/UTC
+
+    ###########
+    # Locales #
+    ###########
+
+    manala_locales:
+      - name:  en_US.UTF-8
+        state: absent
+
+    manala_locales_default: C.UTF-8
+
+    #######
+    # Apt #
+    #######
+
+    manala_apt_update: true
+
+    manala_apt_components: ['main']
+
+    manala_apt_sources_list_template: sources_list/debian_security_updates.list.j2
+
+    manala_apt_repositories_exclusive: true
+    manala_apt_repositories:
+      - manala
+
+    manala_apt_preferences: []
+
+    manala_apt_packages: []
+
+    #######
+    # Ssh #
+    #######
+
+    manala_ssh_config_sshd_template: config/sshd/manala.j2
+
+    manala_ssh_config_template: config/manala.j2
+
+    #######
+    # Git #
+    #######
+
+    manala_git_config_template: config/manala.j2
+
+    #############
+    # Oh my zsh #
+    #############
+
+    manala_ohmyzsh_users:
+      - user:     vagrant
+        group:    vagrant
+        template: users/manala.j2
+
+    #######
+    # Vim #
+    #######
+
+    manala_vim_config_template: config/manala.j2
+
+    ################
+    # Alternatives #
+    ################
+
+    manala_alternatives:
+      - name: editor
+        path: "{{ manala_vim_bin }}"
+
+  roles:
+    - role: manala.motd
+    - role: manala.timezone
+    - role: manala.locales
+    - role: manala.apt
+    - role: manala.ssh
+    - role: manala.sudo
+    - role: manala.users
+    - role: manala.make
+    - role: manala.git
+    - role: manala.zsh
+    - role: manala.ohmyzsh
+    - role: manala.vim
+    - role: manala.alternatives
