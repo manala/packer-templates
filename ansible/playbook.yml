@@ -41,7 +41,7 @@
     # Motd #
     ########
 
-    manala_motd_template: template/manala.j2
+    manala_motd_template: template/manala_dev.j2
     manala_motd:          "{{ _description }} - {{ _version }}"
 
     ############
@@ -82,15 +82,15 @@
     # Ssh #
     #######
 
-    manala_ssh_config_sshd_template: config/sshd/manala.j2
+    manala_ssh_config_sshd_template: config/sshd/manala_dev.j2
 
-    manala_ssh_config_template: config/manala.j2
+    manala_ssh_config_template: config/manala_dev.j2
 
     #######
     # Git #
     #######
 
-    manala_git_config_template: config/manala.j2
+    manala_git_config_template: config/manala_dev.j2
 
     #############
     # Oh my zsh #
@@ -99,13 +99,13 @@
     manala_ohmyzsh_users:
       - user:     app
         group:    app
-        template: users/manala.j2
+        template: users/manala_dev.j2
 
     #######
     # Vim #
     #######
 
-    manala_vim_config_template: config/manala.j2
+    manala_vim_config_template: config/manala_dev.j2
 
     ################
     # Alternatives #
