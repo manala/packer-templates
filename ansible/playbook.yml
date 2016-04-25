@@ -41,7 +41,7 @@
     # Motd #
     ########
 
-    manala_motd_template: template/manala_dev.j2
+    manala_motd_template: template/manala.j2
     manala_motd:          "{{ _description }} - {{ _version }}"
 
     ############
