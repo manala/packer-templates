@@ -3,41 +3,52 @@
 
 Vagrant.configure(2) do |config|
 
-    # Box
-    config.vm.box = 'debian-8-amd64'
+  # Box
+  #config.vm.box = 'app-dev-debian'
 
-    # Hostname
-    config.vm.hostname = 'debian-8-amd64.test'
+  # Hostname
+  config.vm.hostname = 'app-dev-debian.test'
 
-    # Hosts
-    if Vagrant.has_plugin?('landrush')
-        config.landrush.enabled            = true
-        config.landrush.tld                = config.vm.hostname
-        config.landrush.guest_redirect_dns = false
-    elsif Vagrant.has_plugin?('vagrant-hostmanager')
-        config.hostmanager.enabled     = true
-        config.hostmanager.manage_host = true
-        config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
-            if vm.id
-                `VBoxManage guestproperty get #{vm.id} "/VirtualBox/GuestInfo/Net/1/V4/IP"`.split()[1]
-            end
-        end
+  # Hosts
+  if Vagrant.has_plugin?('landrush')
+    config.landrush.enabled            = true
+    config.landrush.tld                = config.vm.hostname
+    config.landrush.guest_redirect_dns = false
+  elsif Vagrant.has_plugin?('vagrant-hostmanager')
+    config.hostmanager.enabled     = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
+      if vm.id
+        `VBoxManage guestproperty get #{vm.id} "/VirtualBox/GuestInfo/Net/1/V4/IP"`.split()[1]
+      end
     end
+  end
 
-    # Network
-    config.vm.network 'private_network', type: 'dhcp'
+  # Ssh
+  config.ssh.username = 'app'
 
-    # Providers
-    config.vm.provider 'virtualbox' do |vb|
-        vb.name   = 'debian-8-amd64'
-        vb.memory = '1024'
-        vb.gui    = false
-        vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-        vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
-    end
+  # Network
+  config.vm.network 'private_network', type: 'dhcp'
 
-    config.vm.provision 'ansible_local' do |ansible|
-        ansible.playbook = 'ansible/setup.yml'
-        ansible.sudo     = true
-    end
+  # Provider - Virtualbox
+  # config.vm.provider 'virtualbox' do |vb|
+  #   vb.name   = 'debian-8-amd64'
+  #   vb.memory = '1024'
+  #   vb.gui    = false
+  #   vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+  #   vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
+  # end
+  
+  # Provider - Docker
+  config.vm.provider 'docker' do |docker|
+    docker.image   = 'app-dev-debian'
+    docker.cmd     = ['service', 'ssh', 'start', '-D']
+    docker.has_ssh = true
+  end
+
+  config.vm.provision 'ansible_local' do |ansible|
+    ansible.playbook = 'ansible/playbook.yml'
+    ansible.sudo     = true
+  end
+
 end

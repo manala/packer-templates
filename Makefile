@@ -41,12 +41,13 @@ endif
 ## Test
 test:
 ifeq (${type}, docker)
+	printf "${COLOR_INFO}Import docker image ${COLOR_RESET}\n"
 	cat ${template}-${version}-docker.tar | docker import - ${template}
-	docker run --rm --user docker --workdir /home/docker --tty -i ${template} /bin/zsh
+	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=docker && vagrant ssh && vagrant destroy -f
 else
 	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
 	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
-	-cd tests/vagrant && vagrant destroy --force && vagrant up && vagrant ssh && vagrant destroy -f
+	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=virtualbox && vagrant ssh && vagrant destroy -f
 endif
 
 ## Clean
