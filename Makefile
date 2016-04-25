@@ -60,4 +60,4 @@ update: update-roles
 ## Update roles
 update-roles:
 	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles:\n"
-	#ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
