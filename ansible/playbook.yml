@@ -14,10 +14,11 @@
     # Sudo #
     ########
 
+    manala_sudo_sudoers_exclusive: true
     manala_sudo_sudoers:
       - file: app
         config:
-          - 'app ALL=NOPASSWD:ALL'
+          - app: ALL=NOPASSWD:ALL
 
     #########
     # Users #
