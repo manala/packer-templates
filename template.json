@@ -60,8 +60,7 @@
                 "scripts/bzip2.sh",
                 "scripts/ansible.sh",
                 "scripts/openssh.sh",
-                "scripts/nfs.sh",
-                "scripts/pam.sh"
+                "scripts/nfs.sh"
             ]
         },
         {
