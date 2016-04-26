@@ -32,8 +32,7 @@ help:
 ## Build
 build: clean update
 ifeq (${type}, docker)
-	mkdir -p ~/.packer.d/tmp
-	TMPDIR=~/.packer.d/tmp packer build -only=docker template.json
+	packer build -only=docker template.json
 else
 	packer build -only=virtualbox template.json
 endif
@@ -41,8 +40,11 @@ endif
 ## Test
 test:
 ifeq (${type}, docker)
-	printf "${COLOR_INFO}Import docker image ${COLOR_RESET}\n"
+	printf "${COLOR_INFO}Import test docker image ${COLOR_RESET}\n"
 	cat ${template}-${version}-docker.tar | docker import - ${template}
+	printf "${COLOR_INFO}Install test ansible galaxy roles into ${COLOR_RESET}tests/vagrant/ansible/roles\n"
+	cd tests/vagrant && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+	printf "${COLOR_INFO}Launch test vagrant ${COLOR_RESET}\n"
 	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=docker && vagrant ssh && vagrant destroy -f
 else
 	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
@@ -60,5 +62,5 @@ update: update-roles
 
 ## Update roles
 update-roles:
-	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles:\n"
+	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles\n"
 	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
