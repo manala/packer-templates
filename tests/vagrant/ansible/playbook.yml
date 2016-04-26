@@ -4,4 +4,24 @@
 
   vars:
 
+    _description: Test
+    _version:     1.2.3
+
+    # Manala - Skeleton
+    manala_skeleton:     manala_app
+    manala_skeleton_env: dev
+    manala_skeleton_options:
+      - skeleton_options
+    manala_skeleton_patterns:
+      - skeleton_patterns
+
+    # Skeleton - Options
+    skeleton_options:
+      motd: true
+    
+    # Skeleton - Patterns
+    skeleton_patterns:
+      motd: "{{ _description }} - {{ _version }}"
+
   roles:
+    - role: manala.skeleton
