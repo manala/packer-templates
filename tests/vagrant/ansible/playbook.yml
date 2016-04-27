@@ -4,10 +4,13 @@
 
   vars:
 
-    app_env:   dev
-    app_user:  app
-    app_group: app
-    app_dir:   /srv/app
+    app_env:          dev
+    app_user:         app
+    app_group:        app
+    app_dir:          /srv/app
+    app_log_dir:      /var/log/app
+    app_cache_dir:    /var/cache/app
+    app_sessions_dir: /var/lib/app/sessions
 
     #####################
     # Manala - Skeleton #
@@ -16,9 +19,13 @@
     manala_skeleton:     elao_app_php
     manala_skeleton_env: "{{ app_env }}"
     manala_skeleton_options_hashes:
-      - app_user:  "{{ app_user }}"
-        app_group: "{{ app_group }}"
-        app_dir:   "{{ app_dir }}"
+      - app_user:         "{{ app_user }}"
+        app_group:        "{{ app_group }}"
+        app_dir:          "{{ app_dir }}"
+        app_log_dir:      "{{ app_log_dir }}"
+        app_cache_dir:    "{{ app_cache_dir }}"
+        app_sessions_dir: "{{ app_sessions_dir }}"
+      - app_options
     manala_skeleton_patterns_hashes:
       - app_patterns
 
@@ -26,7 +33,27 @@
     # App #
     #######
 
+    app_options:
+
+      php_version:           7.0
+      nodejs_version:        5
+      mysq:                  false
+      mysql_version:         5.6
+      postgresql:            false
+      postgresql_version:    9.5
+      redis:                 false
+      mongodb:               false
+      mongodb_version:       3.2
+      elasticsearch:         false
+      elasticsearch_version: 1.7
+
     app_patterns:
+
+      ############
+      # Timezone #
+      ############
+
+      timezone: Etc/UTC
 
       #######
       # Env #
@@ -44,6 +71,126 @@
         - APP_MAILER_HOST:       127.0.0.1
         - APP_MAILER_USER:       'null'
         - APP_MAILER_PASSWORD:   'null'
+
+      #########
+      # Files #
+      #########
+
+      files:
+        #- path:  "{{ app_dir }}/var"
+        #  state: directory
+        - path:  "{{ app_dir }}/var/logs"
+          src:   "{{ app_log_dir }}"
+          state: link_directory
+        - path:  "{{ app_dir }}/var/cache"
+          src:   "{{ app_cache_dir }}"
+          state: link_directory
+        - path:  "{{ app_dir }}/var/sessions"
+          src:   "{{ app_sessions_dir }}"
+          state: link_directory
+
+      #######
+      # Npm #
+      #######
+
+      npm_packages:
+        - name:    gulp
+          version: 3
+        #- name: gulpjs/gulp-cli#4.0
+        #- name:    webpack
+        #  version: 1
+        #- name:    webpack
+        #  version: 2.1.0-beta.4
+
+      #######
+      # Php #
+      #######
+
+      php_fpm_pools:
+        - file:     app.conf
+          template: fpm_pools/manala_{{ app_env }}.conf.j2
+          config:
+            - app:
+              - user:  "{{ app_user }}"
+              - group: "{{ app_group }}"
+              - php_admin_value[error_log]: "{{ app_log_dir }}/php.error.log"
+
+      php_extensions:
+        - intl
+        - curl
+
+      php_configs:
+        - file: app-opcache.ini
+          template: configs/manala_opcache_{{ app_env }}.ini.j2
+        - file: app.ini
+          template: configs/manala_{{ app_env }}.ini.j2
+          config:
+            - date.timezone: UTC
+
+      php_applications: []
+
+      #########
+      # Nginx #
+      #########
+
+      nginx_configs:
+        # Php fpm
+        - file:     app_php_fpm
+          template: configs/manala_php_fpm_{{ app_env }}.j2
+        # Gzip
+        - file:     app_gzip
+          template: configs/manala_gzip_{{ app_env }}.j2
+        # App
+        - file:     app.conf
+          template: configs/server.conf.j2
+          config:
+            - server_name: "{{ ansible_fqdn }}"
+            #- server_name: "*.ngrok.io"
+            - root:        "{{ app_dir }}/web"
+            - access_log:  "{{ app_log_dir }}/nginx.access.log"
+            - error_log:   "{{ app_log_dir }}/nginx.error.log"
+            - include:     conf.d/app_gzip
+            - location /:
+              - try_files: $uri /app.php$is_args$args
+            - location ~ ^/(app(_[-\w]+)?)\.php(/|$):
+              - include: conf.d/app_php_fpm
+              #- internal;
+
+      ########
+      # Cron #
+      ########
+
+      #cron_files:
+      #  - file: app
+      #    user: "{{ app_user }}"
+      #    jobs:
+      #      # Do foo bar
+      #      - name:   foo-bar
+      #        job:    "php {{ app_dir }}/bin/console app:foo:bar --env={{ app_env }} --no-interaction -vv >> {{ app_log_dir }}/cron.foo-bar.log 2>&1"
+      #        minute: 0
+      #        hour:   7
+      #        # Dev
+      #        state:  absent
+
+      ##############
+      # Supervisor #
+      ##############
+
+      #supervisor_configs:
+      #  - file:     app.conf
+      #    template: configs/manala_program_{{ app_env }}.conf.j2
+      #    config:
+      #      - foo-bar:
+      #        - command:         php bin/console app:foo:bar --env={{ app_env }} --no-interaction -vv
+      #        - directory:       "{{ app_dir }}"
+      #        - user:            "{{ app_user }}"
+      #        - autorestart:     true
+      #        - stdout_logfile:  "{{ app_log_dir }}/supervisor.foo-bar.log"
+      #        - redirect_stderr: true
+      #        - environment:     "SYMFONY_ENV=\"{{ app_env }}\""
+      #        # Dev
+      #        - autostart:       false
+
 
   roles:
     - role: manala.skeleton
