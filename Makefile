@@ -49,6 +49,9 @@ ifeq (${type}, docker)
 else
 	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
 	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
+	printf "${COLOR_INFO}Install test ansible galaxy roles into ${COLOR_RESET}tests/vagrant/ansible/roles\n"
+	cd tests/vagrant && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+	printf "${COLOR_INFO}Launch test vagrant ${COLOR_RESET}\n"
 	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=virtualbox && vagrant ssh && vagrant destroy -f
 endif
 
