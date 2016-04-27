@@ -4,24 +4,46 @@
 
   vars:
 
-    _description: Test
-    _version:     1.2.3
+    app_env:   dev
+    app_user:  app
+    app_group: app
+    app_dir:   /srv/app
 
-    # Manala - Skeleton
-    manala_skeleton:     manala_app
-    manala_skeleton_env: dev
-    manala_skeleton_options:
-      - skeleton_options
-    manala_skeleton_patterns:
-      - skeleton_patterns
+    #####################
+    # Manala - Skeleton #
+    #####################
 
-    # Skeleton - Options
-    skeleton_options:
-      motd: true
-    
-    # Skeleton - Patterns
-    skeleton_patterns:
-      motd: "{{ _description }} - {{ _version }}"
+    manala_skeleton:     elao_app_php
+    manala_skeleton_env: "{{ app_env }}"
+    manala_skeleton_options_hashes:
+      - app_user:  "{{ app_user }}"
+        app_group: "{{ app_group }}"
+        app_dir:   "{{ app_dir }}"
+    manala_skeleton_patterns_hashes:
+      - app_patterns
+
+    #######
+    # App #
+    #######
+
+    app_patterns:
+
+      #######
+      # Env #
+      #######
+
+      env:
+        - SYMFONY_ENV:           "{{ app_env }}"
+        - APP_SECRET:            e582f32b254dbcac9b0898816a598397498fa2d3
+        - APP_DATABASE_HOST:     127.0.0.1
+        - APP_DATABASE_PORT:     'null'
+        - APP_DATABASE_NAME:     app
+        - APP_DATABASE_USER:     "{{ app_user }}"
+        - APP_DATABASE_PASSWORD: 'null'
+        - APP_MAILER_TRANSPORT:  smtp
+        - APP_MAILER_HOST:       127.0.0.1
+        - APP_MAILER_USER:       'null'
+        - APP_MAILER_PASSWORD:   'null'
 
   roles:
     - role: manala.skeleton
