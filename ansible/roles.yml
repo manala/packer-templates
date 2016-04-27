@@ -1,15 +1,3 @@
 - src: manala.sudo
 - src: manala.users
-
-
-- src: manala.motd
-- src: manala.timezone
-- src: manala.locales
-- src: manala.apt
-- src: manala.ssh
-- src: manala.make
-- src: manala.git
-- src: manala.zsh
-- src: manala.ohmyzsh
-- src: manala.vim
-- src: manala.alternatives
+- src: manala.skeleton

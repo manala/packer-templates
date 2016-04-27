@@ -10,9 +10,9 @@
     #_version:     x.x.x
     #_type:        virtualbox|docker
 
-    ########
-    # Sudo #
-    ########
+    #################
+    # Manala - Sudo #
+    #################
 
     manala_sudo_sudoers_exclusive: true
     manala_sudo_sudoers:
@@ -20,9 +20,9 @@
         config:
           - app: ALL=NOPASSWD:ALL
 
-    #########
-    # Users #
-    #########
+    ##################
+    # Manala - Users #
+    ##################
 
     manala_users_groups:
       - app
@@ -37,99 +37,23 @@
         authorized_keys:
           - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
 
+    #####################
+    # Manala - Skeleton #
+    #####################
 
-    # TO REMOVE IN FAVOR OF SKELETON ROLE !!! #
-
-
-    ########
-    # Motd #
-    ########
-
-    manala_motd_template: template/manala.j2
-    manala_motd:          "{{ _description }} - {{ _version }}"
+    manala_skeleton:     manala_app
+    manala_skeleton_env: dev
+    manala_skeleton_patterns_hashes:
+      - skeleton_patterns
 
     ############
-    # Timezone #
+    # Skeleton #
     ############
 
-    manala_timezone: Etc/UTC
-
-    ###########
-    # Locales #
-    ###########
-
-    manala_locales:
-      - name:  en_US.UTF-8
-        state: absent
-
-    manala_locales_default: C.UTF-8
-
-    #######
-    # Apt #
-    #######
-
-    manala_apt_update: true
-
-    manala_apt_components: ['main']
-
-    manala_apt_sources_list_template: sources_list/debian_security_updates.list.j2
-
-    manala_apt_repositories_exclusive: true
-    manala_apt_repositories:
-      - manala
-
-    manala_apt_preferences: []
-
-    manala_apt_packages: []
-
-    #######
-    # Ssh #
-    #######
-
-    manala_ssh_config_sshd_template: config/sshd/manala_dev.j2
-
-    manala_ssh_config_template: config/manala_dev.j2
-
-    #######
-    # Git #
-    #######
-
-    manala_git_config_template: config/manala_dev.j2
-
-    #############
-    # Oh my zsh #
-    #############
-
-    manala_ohmyzsh_users:
-      - user:     app
-        group:    app
-        template: users/manala_dev.j2
-
-    #######
-    # Vim #
-    #######
-
-    manala_vim_config_template: config/manala_dev.j2
-
-    ################
-    # Alternatives #
-    ################
-
-    manala_alternatives:
-      - name: editor
-        path: "{{ manala_vim_bin }}"
+    skeleton_patterns:
+      motd: "{{ _description }} - {{ _version }}"
 
   roles:
-    - role: manala.motd
-    - role: manala.timezone
-    - role: manala.locales
-    - role: manala.apt
-    - role: manala.ssh
     - role: manala.sudo
     - role: manala.users
-    - role: manala.make
-    - role: manala.git
-    - role: manala.zsh
-    - role: manala.ohmyzsh
-    - role: manala.vim
-    - role: manala.alternatives
+    - role: manala.skeleton
