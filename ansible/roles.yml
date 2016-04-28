@@ -1,3 +1,4 @@
 - src: manala.sudo
 - src: manala.users
 - src: manala.skeleton
+- src: manala.ansible-galaxy

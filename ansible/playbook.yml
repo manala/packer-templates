@@ -53,7 +53,18 @@
     skeleton_patterns:
       motd: "{{ _description }} - {{ _version }}"
 
+    ###########################
+    # Manala - Ansible Galaxy #
+    ###########################
+
+    manala_ansible_galaxy_roles:
+      - manala.ansible-galaxy
+      - manala.apt
+      - manala.skeleton
+      - manala.deploy
+
   roles:
     - role: manala.sudo
     - role: manala.users
     - role: manala.skeleton
+    - role: manala.ansible-galaxy
