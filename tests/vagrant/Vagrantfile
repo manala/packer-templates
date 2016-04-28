@@ -4,7 +4,7 @@
 Vagrant.configure(2) do |config|
 
   # Box
-  #config.vm.box = 'app-dev-debian'
+  config.vm.box = 'app-dev-debian'
 
   # Hostname
   config.vm.hostname = 'app-dev-debian.test'
@@ -31,20 +31,20 @@ Vagrant.configure(2) do |config|
   config.vm.network 'private_network', type: 'dhcp'
 
   # Provider - Virtualbox
-  # config.vm.provider 'virtualbox' do |vb|
-  #   vb.name   = 'app-dev-debian'
-  #   vb.memory = '1024'
-  #   vb.gui    = false
-  #   vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-  #   vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
-  # end
+  config.vm.provider 'virtualbox' do |vb|
+    vb.name   = 'app-dev-debian'
+    vb.memory = '1024'
+    vb.gui    = false
+    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
+  end
 
   # Provider - Docker
-  config.vm.provider 'docker' do |docker|
-    docker.image   = 'app-dev-debian'
-    docker.cmd     = ['service', 'ssh', 'start', '-D']
-    docker.has_ssh = true
-  end
+  # config.vm.provider 'docker' do |docker|
+  #   docker.image   = 'app-dev-debian'
+  #   docker.cmd     = ['service', 'ssh', 'start', '-D']
+  #   docker.has_ssh = true
+  # end
 
   config.vm.provision 'ansible_local' do |ansible|
     ansible.playbook = 'ansible/playbook.yml'
