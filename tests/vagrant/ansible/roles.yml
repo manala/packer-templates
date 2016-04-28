@@ -1,1 +1,4 @@
+- src: manala.ansible-galaxy
+- src: manala.apt
 - src: manala.skeleton
+- src: manala.deploy

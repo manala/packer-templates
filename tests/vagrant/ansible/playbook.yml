@@ -191,6 +191,26 @@
       #        # Dev
       #        - autostart:       false
 
+    ###########################
+    # Manala - Ansible Galaxy #
+    ###########################
+
+    #manala_ansible_galaxy_force: true
+
+    manala_ansible_galaxy_roles:
+      - manala.ansible-galaxy
+      - manala.apt
+      - manala.skeleton
+      - manala.deploy
+
+    ################
+    # Manala - Apt #
+    ################
+
+    manala_apt_update:  true
+    manala_apt_upgrade: true
 
   roles:
-    - role: manala.skeleton
+    #- role: manala.skeleton
+    #- role: manala.ansible-galaxy
+    #- role: manala.apt
