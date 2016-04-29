@@ -16,7 +16,7 @@
     # Manala - Skeleton #
     #####################
 
-    manala_skeleton:     elao_app_php
+    manala_skeleton:     manala_app_php
     manala_skeleton_env: "{{ app_env }}"
     manala_skeleton_options_hashes:
       - app_user:         "{{ app_user }}"
