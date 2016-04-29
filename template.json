@@ -82,7 +82,7 @@
         {
             "type"    : "shell",
             "scripts" : [
-                "scripts/clean-apt.sh"
+                "scripts/clean.sh"
             ]
         },
         {
