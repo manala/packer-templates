@@ -37,7 +37,7 @@
 
       php_version:           7.0
       nodejs_version:        5
-      mysq:                  false
+      mysql:                 false
       mysql_version:         5.6
       postgresql:            false
       postgresql_version:    9.5
