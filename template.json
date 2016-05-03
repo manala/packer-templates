@@ -2,7 +2,7 @@
     "variables": {
         "name"        : "app-dev-debian",
         "description" : "App - Dev - Debian",
-        "version"     : "3.0.0"
+        "version"     : "3.0.1"
     },
     "builders": [
         {
