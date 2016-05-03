@@ -35,17 +35,17 @@
 
     app_options:
 
-      php_version:           7.0
-      nodejs_version:        5
+      #php_version:           7.0
+      #nodejs_version:        6
       mysql:                 false
-      mysql_version:         5.6
+      #mysql_version:         5.6
       postgresql:            false
-      postgresql_version:    9.5
+      #postgresql_version:    9.5
       redis:                 false
       mongodb:               false
-      mongodb_version:       3.2
+      #mongodb_version:       3.2
       elasticsearch:         false
-      elasticsearch_version: 1.7
+      #elasticsearch_version: 1.7
 
     app_patterns:
 
@@ -60,25 +60,16 @@
       #######
 
       env:
-        - SYMFONY_ENV:           "{{ app_env }}"
-        - APP_SECRET:            e582f32b254dbcac9b0898816a598397498fa2d3
-        - APP_DATABASE_HOST:     127.0.0.1
-        - APP_DATABASE_PORT:     'null'
-        - APP_DATABASE_NAME:     app
-        - APP_DATABASE_USER:     "{{ app_user }}"
-        - APP_DATABASE_PASSWORD: 'null'
-        - APP_MAILER_TRANSPORT:  smtp
-        - APP_MAILER_HOST:       127.0.0.1
-        - APP_MAILER_USER:       'null'
-        - APP_MAILER_PASSWORD:   'null'
+        - SYMFONY_ENV:       "{{ app_env }}"
+        - APP_SECRET:        e582f32b254dbcac9b0898816a598397498fa2d3
+        - APP_DATABASE_NAME: app
+        - APP_DATABASE_USER: "{{ app_user }}"
 
       #########
       # Files #
       #########
 
       files:
-        #- path:  "{{ app_dir }}/var"
-        #  state: directory
         - path:  "{{ app_dir }}/var/logs"
           src:   "{{ app_log_dir }}"
           state: link_directory
@@ -116,6 +107,7 @@
               - php_admin_value[error_log]: "{{ app_log_dir }}/php.error.log"
 
       php_extensions:
+        # Symfony
         - intl
         - curl
 
@@ -127,7 +119,12 @@
           config:
             - date.timezone: UTC
 
-      php_applications: []
+      php_applications:
+        # Dev
+        - php-cs-fixer
+        - phpcs
+        # App
+        #- openl10n@0.2.0
 
       #########
       # Nginx #
