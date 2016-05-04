@@ -37,6 +37,16 @@
         authorized_keys:
           - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
 
+    ####################
+    # Manala - Locales #
+    ####################
+
+    manala_locales:
+      - name:  en_US.UTF-8
+        state: absent
+
+    manala_locales_default: C.UTF-8
+
     #####################
     # Manala - Skeleton #
     #####################
@@ -66,5 +76,6 @@
   roles:
     - role: manala.sudo
     - role: manala.users
+    - role: manala.locales
     - role: manala.skeleton
     - role: manala.ansible-galaxy
