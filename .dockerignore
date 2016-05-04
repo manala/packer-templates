@@ -1,0 +1,6 @@
+/http/
+/packer_cache/
+/output-*
+/*.box
+/*.tar
+/tests/

@@ -67,3 +67,26 @@ update: update-roles
 update-roles:
 	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles\n"
 	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+
+build@docker:
+	#	--force-rm
+	docker build \
+		--pull \
+		--rm \
+		--tag manala/app-dev-debian \
+		--tag manala/app-dev-debian:3 \
+		--tag manala/app-dev-debian:3.0 \
+		--tag manala/app-dev-debian:3.0.1 \
+		.
+
+test@docker:
+	# --rm
+	docker run \
+		--rm \
+		--volume `pwd`/tests/vagrant:/srv/app \
+		--workdir /srv/app \
+		--tty -i \
+		--user app \
+		--hostname app-dev-debian.dev \
+		manala/app-dev-debian \
+		/bin/zsh
