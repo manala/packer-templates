@@ -24,6 +24,11 @@ Debian 8 - amd64
   * manala.skeleton (with dependencies)
   * manala.deploy
 
+### 3.0.1
+
+* Replace chrony by ntp
+* Update VirtualBox Guest Additions from 5.0.18 to 5.0.20
+
 ### 3.0.0
 
 * Manala debian repository
