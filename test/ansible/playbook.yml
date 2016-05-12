@@ -37,14 +37,14 @@
 
       #php_version:           7.0
       #nodejs_version:        6
-      mysql:                 false
+      mysql:                 true
       #mysql_version:         5.6
-      postgresql:            false
+      postgresql:            true
       #postgresql_version:    9.5
-      redis:                 false
-      mongodb:               false
+      redis:                 true
+      mongodb:               true
       #mongodb_version:       3.2
-      elasticsearch:         false
+      elasticsearch:         true
       #elasticsearch_version: 1.7
 
     app_patterns:
@@ -208,6 +208,6 @@
     manala_apt_upgrade: true
 
   roles:
-    #- role: manala.skeleton
+    - role: manala.skeleton
     #- role: manala.ansible-galaxy
     #- role: manala.apt
