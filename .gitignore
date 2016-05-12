@@ -5,7 +5,7 @@
 
 /ansible/roles/*.*/
 
-/tests/vagrant/.vagrant/
-/tests/vagrant/ansible/roles/*.*/
-/tests/vagrant/var/*
-!tests/vagrant/var/.gitkeep
+/test/.vagrant/
+/test/ansible/roles/*.*/
+/test/var/*
+!test/var/.gitkeep

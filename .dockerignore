@@ -3,4 +3,4 @@
 /output-*
 /*.box
 /*.tar
-/tests
+/test
