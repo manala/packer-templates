@@ -11,6 +11,21 @@ template      = app-dev-debian
 version       = $(shell grep '"version"' template.json | sed 's/^.*"version"[ ]*:[ ]*"\([0-9].[0-9].[0-9]*\).*$$/\1/')
 version_minor = $(shell echo ${version} | sed 's/^\([0-9].[0-9]\).[0-9]*$$/\1/')
 
+## Image
+IMAGE                = app
+IMAGE_DESCRIPTION    = App - Dev - Debian
+IMAGE_VERSION_MAJOR  = 3
+IMAGE_VERSION_MINOR  = 0
+IMAGE_VERSION_PATCH  = 1
+IMAGE_VERSION_LATEST = true
+IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
+
+# App
+APP_ENV   = dev
+APP_USER  = app
+APP_GROUP = app
+APP_DIR   = /srv/app
+
 ## Help
 help:
 	printf "${COLOR_COMMENT}Usage:${COLOR_RESET}\n"
@@ -67,26 +82,61 @@ update: update-roles
 update-roles:
 	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles\n"
 	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+## Build - App - Dev @ Docker
+build-app-dev@docker: IMAGE             = app
+build-app-dev@docker: IMAGE_DESCRIPTION = App - Dev - Debian
+build-app-dev@docker: APP_ENV           = dev
+build-app-dev@docker: update build@docker
+
+## Test - App - Dev @ Docker
+test-app-dev@docker: IMAGE   = app
+test-app-dev@docker: APP_ENV = dev
+test-app-dev@docker: test@docker
+
+## Build - App - Test @ Docker
+build-app-test@docker: IMAGE             = app
+build-app-test@docker: IMAGE_DESCRIPTION = App - Test - Debian
+build-app-test@docker: APP_ENV           = test
+build-app-test@docker: update build@docker
+
+## Test - App - Test @ Docker
+test-app-test@docker: IMAGE   = app
+test-app-test@docker: APP_ENV = test
+test-app-test@docker: test@docker
+
+DOCKER_IMAGE_TAGS = \
+	--tag manala/${IMAGE}-${APP_ENV}-debian:${IMAGE_VERSION_MAJOR} \
+	--tag manala/${IMAGE}-${APP_ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR} \
+	--tag manala/${IMAGE}-${APP_ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
+
+ifeq (${IMAGE_VERSION_LATEST},true)
+	DOCKER_IMAGE_TAGS += --tag manala/${IMAGE}-${APP_ENV}-debian
+endif
 
 build@docker:
-	#	--force-rm
+	printf "${COLOR_INFO}Build ${COLOR_RESET}manala/${IMAGE}-${APP_ENV}-debian\n"
 	docker build \
 		--pull \
 		--rm \
-		--tag manala/app-dev-debian \
-		--tag manala/app-dev-debian:3 \
-		--tag manala/app-dev-debian:3.0 \
-		--tag manala/app-dev-debian:3.0.1 \
+		--force-rm \
+		${DOCKER_IMAGE_TAGS} \
+		--build-arg IMAGE="manala_${IMAGE}" \
+		--build-arg IMAGE_DESCRIPTION="${IMAGE_DESCRIPTION}" \
+		--build-arg IMAGE_VERSION="${IMAGE_VERSION}" \
+		--build-arg APP_ENV="${APP_ENV}" \
+		--build-arg APP_USER="${APP_USER}" \
+		--build-arg APP_GROUP="${APP_GROUP}" \
+		--build-arg APP_DIR="${APP_DIR}" \
 		.
 
 test@docker:
-	# --rm
+	printf "${COLOR_INFO}Run ${COLOR_RESET}manala/${IMAGE}-${APP_ENV}-debian\n"
 	docker run \
 		--rm \
-		--volume `pwd`/tests/vagrant:/srv/app \
+		--volume `pwd`/test:/srv/app \
 		--workdir /srv/app \
 		--tty -i \
 		--user app \
-		--hostname app-dev-debian.dev \
-		manala/app-dev-debian \
-		/bin/zsh
+		--hostname ${IMAGE}-${APP_ENV}-debian.test \
+		manala/${IMAGE}-${APP_ENV}-debian \
+		/bin/bash
