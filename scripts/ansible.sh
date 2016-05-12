@@ -1,3 +1,3 @@
 #!/bin/bash
 
-apt-get -y install ansible
+DEBIAN_FRONTEND=noninteractive apt-get -y install ansible
