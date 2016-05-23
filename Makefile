@@ -93,9 +93,7 @@ test-app-test@docker: ENV   = test
 test-app-test@docker: test@docker
 
 DOCKER_IMAGE_TAGS = \
-	--tag manala/${IMAGE}-${ENV}-debian:${IMAGE_VERSION_MAJOR} \
-	--tag manala/${IMAGE}-${ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR} \
-	--tag manala/${IMAGE}-${ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
+	--tag manala/${IMAGE}-${ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}
 
 ifeq (${IMAGE_VERSION_LATEST},true)
 	DOCKER_IMAGE_TAGS += --tag manala/${IMAGE}-${ENV}-debian
