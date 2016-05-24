@@ -24,6 +24,10 @@ Debian 8 - amd64
   * manala.skeleton (with dependencies)
   * manala.deploy
 
+### 3.0.2
+
+* Introduce local ansible inventory
+
 ### 3.0.1
 
 * Replace chrony by ntp
