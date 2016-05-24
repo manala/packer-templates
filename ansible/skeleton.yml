@@ -4,7 +4,7 @@
 
   vars:
 
-    #image:             manala_app
+    #image:             app
     #image_description: Foo bar
     #image_version:     x.x.x
 
@@ -12,7 +12,7 @@
     # Manala - Skeleton #
     #####################
 
-    manala_skeleton:     "{{ image }}"
+    manala_skeleton:     "manala_{{ image|replace('-', '_') }}"
     manala_skeleton_env: "{{ env }}"
     manala_skeleton_patterns_hashes:
       - app_patterns

@@ -19,17 +19,11 @@ RUN sh scripts/apt.sh \
 
 COPY ansible ansible
 
-RUN echo "localhost ansible_connection=local\n\n\
-[env_$ENV]\n\
-localhost\n\n\
-[env_$ENV:vars]\n\
-env=$ENV\n" > /etc/ansible/hosts \
-    && ansible-playbook ansible/setup.yml
+RUN ansible-playbook ansible/setup.yml
 
 USER app
 
 RUN ansible-playbook \
-        --become \
         --extra-vars "\
 image='$IMAGE' \
 image_description='$IMAGE_DESCRIPTION' \

@@ -12,7 +12,7 @@
     manala_sudo_sudoers:
       - file: app
         config:
-          - app:      'ALL=NOPASSWD:ALL'
+          - app: 'ALL=NOPASSWD:ALL'
 
     ##################
     # Manala - Users #

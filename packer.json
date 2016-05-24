@@ -1,12 +1,6 @@
 {
-    "variables": {
-        "name"        : "app-dev-debian",
-        "description" : "App - Dev - Debian",
-        "version"     : "3.0.1"
-    },
     "builders": [
         {
-            "name"                 : "virtualbox",
             "type"                 : "virtualbox-iso",
             "guest_os_type"        : "Debian_64",
             "format"               : "ovf",
@@ -43,13 +37,7 @@
                 ["modifyvm", "{{.Name}}", "--memory", "1024"],
                 ["modifyvm", "{{.Name}}", "--cpus", "1"]
             ],
-            "vm_name": "{{user `name`}}"
-        },
-        {
-            "name"        : "docker",
-            "type"        : "docker",
-            "image"       : "debian:jessie",
-            "export_path" : "{{user `name`}}-{{user `version`}}-docker.tar"
+            "vm_name": "{{user `image`}}"
         }
     ],
     "provisioners": [
@@ -57,48 +45,43 @@
             "type"    : "shell",
             "scripts" : [
                 "scripts/apt.sh",
-                "scripts/ansible.sh"
-            ]
-        },
-        {
-            "type"    : "shell",
-            "scripts" : [
+                "scripts/ansible.sh",
                 "scripts/nfs.sh",
                 "scripts/grub.sh",
-                "scripts/bzip2.sh",
                 "scripts/virtualbox.sh"
             ],
-            "only"    : ["virtualbox"]
+            "environment_vars": [
+                "ENV={{user `env`}}"
+            ]
         },
         {
             "type"            : "ansible-local",
-            "playbook_file"   : "ansible/playbook.yml",
             "playbook_dir"    : "ansible",
+            "playbook_file"   : "ansible/setup.yml"
+        },
+        {
+            "type"            : "ansible-local",
+            "playbook_dir"    : "ansible",
+            "playbook_file"   : "ansible/skeleton.yml",
             "extra_arguments" : [
-                "--extra-vars '_description=\"{{user `description`}}\" _version=\"{{user `version`}}\" _type=\"{{build_name}}\"'"
+                "--extra-vars",
+                "'image=\"{{user `image`}}\" image_description=\"{{user `image_description`}}\" image_version=\"{{user `image_version`}}\" env=\"{{user `env`}}\"'"
             ]
         },
         {
             "type"    : "shell",
             "scripts" : [
-                "scripts/clean.sh"
-            ]
-        },
-        {
-            "type"    : "shell",
-            "scripts" : [
+                "scripts/clean.sh",
                 "scripts/clean-virtualbox.sh"
-            ],
-            "only"    : ["virtualbox"]
+            ]
         }
     ],
     "post-processors": [
         [
             {
                 "type"              : "vagrant",
-                "output"            : "{{user `name`}}-{{user `version`}}-virtualbox.box",
-                "compression_level" : 9,
-                "only"              : ["virtualbox"]
+                "output"            : "{{user `image`}}-{{user `image_version`}}-virtualbox.box",
+                "compression_level" : 9
             }
         ]
     ]

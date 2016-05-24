@@ -10,7 +10,7 @@ COLOR_ERROR   = \033[31m
 ## Image
 IMAGE_VERSION_MAJOR  = 3
 IMAGE_VERSION_MINOR  = 0
-IMAGE_VERSION_PATCH  = 1
+IMAGE_VERSION_PATCH  = 2
 IMAGE_VERSION_LATEST = true
 IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 
@@ -32,49 +32,51 @@ help:
 	printf " ${COLOR_INFO}virtualbox${COLOR_RESET} Virtualbox\n"
 	printf " ${COLOR_INFO}docker ${COLOR_RESET} Docker\n"
 
-## Build
-build: clean update
-ifeq (${type}, docker)
-	packer build -only=docker template.json
-else
-	packer build -only=virtualbox template.json
-endif
-
-## Test
-test:
-ifeq (${type}, docker)
-	printf "${COLOR_INFO}Import test docker image ${COLOR_RESET}\n"
-	cat ${template}-${version}-docker.tar | docker import - ${template}
-	printf "${COLOR_INFO}Install test ansible galaxy roles into ${COLOR_RESET}tests/vagrant/ansible/roles\n"
-	cd tests/vagrant && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
-	printf "${COLOR_INFO}Launch test vagrant ${COLOR_RESET}\n"
-	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=docker && vagrant ssh && vagrant destroy -f
-else
-	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
-	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
-	printf "${COLOR_INFO}Install test ansible galaxy roles into ${COLOR_RESET}tests/vagrant/ansible/roles\n"
-	cd tests/vagrant && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
-	printf "${COLOR_INFO}Launch test vagrant ${COLOR_RESET}\n"
-	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=virtualbox && vagrant ssh && vagrant destroy -f
-endif
-
 ## Clean
 clean:
 	printf "${COLOR_INFO}Clean output files ${COLOR_RESET}\n"
 	rm -Rf output-*
 
 ## Update
-update: update-roles
-
-## Update roles
-update-roles:
+update:
 	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles\n"
-	ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+	#rm -Rf ansible/roles/* && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+
+## Build - App - Dev @ Vagrant
+build-app-dev@vagrant: IMAGE             = app
+build-app-dev@vagrant: IMAGE_DESCRIPTION = App - Dev - Debian
+build-app-dev@vagrant: ENV               = dev
+build-app-dev@vagrant: clean update build@vagrant
+
+## Test - App - Dev @ Vagrant
+test-app-dev@vagrant: IMAGE = app
+test-app-dev@vagrant: ENV   = dev
+test-app-dev@vagrant: test@vagrant
+
+build@vagrant:
+	printf "${COLOR_INFO}Build ${COLOR_RESET}manala/${IMAGE}-${ENV}-debian\n"
+	packer build \
+		-force \
+		-var 'image="${IMAGE}"' \
+		-var 'image_description="${IMAGE_DESCRIPTION}"' \
+		-var 'image_version="${IMAGE_VERSION}"' \
+		-var 'env="${ENV}"' \
+		packer.json
+
+test@vagrant:
+	printf "${COLOR_INFO}Run ${COLOR_RESET}manala/${IMAGE}-${ENV}-debian\n"
+	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
+	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
+	printf "${COLOR_INFO}Install test ansible galaxy roles into ${COLOR_RESET}tests/vagrant/ansible/roles\n"
+	#cd tests/vagrant && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+	printf "${COLOR_INFO}Launch test vagrant ${COLOR_RESET}\n"
+	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=virtualbox && vagrant ssh && vagrant destroy -f
+
 ## Build - App - Dev @ Docker
 build-app-dev@docker: IMAGE             = app
 build-app-dev@docker: IMAGE_DESCRIPTION = App - Dev - Debian
 build-app-dev@docker: ENV               = dev
-build-app-dev@docker: update build@docker
+build-app-dev@docker: clean update build@docker
 
 ## Test - App - Dev @ Docker
 test-app-dev@docker: IMAGE = app
@@ -92,6 +94,17 @@ test-app-test@docker: IMAGE = app
 test-app-test@docker: ENV   = test
 test-app-test@docker: test@docker
 
+## Build - App - Php - Dev @ Docker
+build-app-php-dev@docker: IMAGE             = app-php
+build-app-php-dev@docker: IMAGE_DESCRIPTION = App - Php - Dev - Debian
+build-app-php-dev@docker: ENV               = dev
+build-app-php-dev@docker: clean update build@docker
+
+## Test - App - Php - Dev @ Docker
+test-app-php-dev@docker: IMAGE = app-php
+test-app-php-dev@docker: ENV   = test
+test-app-php-dev@docker: test@docker
+
 DOCKER_IMAGE_TAGS = \
 	--tag manala/${IMAGE}-${ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}
 
@@ -107,7 +120,7 @@ build@docker:
 		--force-rm \
 		--no-cache \
 		${DOCKER_IMAGE_TAGS} \
-		--build-arg IMAGE="manala_${IMAGE}" \
+		--build-arg IMAGE="${IMAGE}" \
 		--build-arg IMAGE_DESCRIPTION="${IMAGE_DESCRIPTION}" \
 		--build-arg IMAGE_VERSION="${IMAGE_VERSION}" \
 		--build-arg ENV="${ENV}" \

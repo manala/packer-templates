@@ -4,7 +4,7 @@
 apt-get -y purge --auto-remove virtualbox-\*
 
 # Install build dependencies & packages
-DEBIAN_FRONTEND=noninteractive apt-get -y install dkms linux-headers-$(uname -r)
+DEBIAN_FRONTEND=noninteractive apt-get -y install bzip2 dkms linux-headers-$(uname -r)
 
 # Install the virtualbox guest additions
 cd ~
@@ -14,4 +14,4 @@ umount /mnt
 rm VBoxGuestAdditions.iso
 
 # Remove build dependencies & packages
-apt-get -y purge --auto-remove dkms linux-headers-$(uname -r)
+apt-get -y purge --auto-remove bzip2 dkms linux-headers-$(uname -r)
