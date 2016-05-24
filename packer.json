@@ -80,7 +80,7 @@
         [
             {
                 "type"              : "vagrant",
-                "output"            : "{{user `image`}}-{{user `image_version`}}-virtualbox.box",
+                "output"            : "{{user `image`}}-{{user `env`}}-debian-{{user `image_version`}}-virtualbox.box",
                 "compression_level" : 9
             }
         ]
