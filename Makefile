@@ -57,10 +57,10 @@ build@vagrant:
 	printf "${COLOR_INFO}Build ${COLOR_RESET}manala/${IMAGE}-${ENV}-debian\n"
 	packer build \
 		-force \
-		-var 'image="${IMAGE}"' \
-		-var 'image_description="${IMAGE_DESCRIPTION}"' \
-		-var 'image_version="${IMAGE_VERSION}"' \
-		-var 'env="${ENV}"' \
+		-var 'image=${IMAGE}' \
+		-var 'image_description=${IMAGE_DESCRIPTION}' \
+		-var 'image_version=${IMAGE_VERSION}' \
+		-var 'env=${ENV}' \
 		packer.json
 
 test@vagrant:
@@ -102,7 +102,7 @@ build-app-php-dev@docker: clean update build@docker
 
 ## Test - App - Php - Dev @ Docker
 test-app-php-dev@docker: IMAGE = app-php
-test-app-php-dev@docker: ENV   = test
+test-app-php-dev@docker: ENV   = dev
 test-app-php-dev@docker: test@docker
 
 DOCKER_IMAGE_TAGS = \
