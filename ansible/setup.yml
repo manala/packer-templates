@@ -49,7 +49,6 @@
       - manala.ansible-galaxy
       - manala.apt
       - manala.skeleton
-      - manala.deploy
 
   roles:
     - role: manala.sudo

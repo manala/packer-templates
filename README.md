@@ -22,7 +22,10 @@ Debian 8 - amd64
   * manala.ansible-galaxy
   * manala.apt
   * manala.skeleton (with dependencies)
-  * manala.deploy
+
+### 3.0.3
+
+* Remove deploy manala ansible role (preferred way is now to install it locally, so that one can deploy without having vagrant box or docker container running)
 
 ### 3.0.2
 
