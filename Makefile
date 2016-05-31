@@ -40,7 +40,7 @@ clean:
 ## Update
 update:
 	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles\n"
-	#rm -Rf ansible/roles/* && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
+	rm -Rf ansible/roles/* && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
 
 ## Build - App - Dev @ Vagrant
 build-app-dev@vagrant: IMAGE             = app
@@ -66,11 +66,11 @@ build@vagrant:
 test@vagrant:
 	printf "${COLOR_INFO}Run ${COLOR_RESET}manala/${IMAGE}-${ENV}-debian\n"
 	printf "${COLOR_INFO}Add vagrant box ${COLOR_RESET}\n"
-	vagrant box add ${template}-${version}-virtualbox.box --name ${template} --force
+	vagrant box add ${IMAGE}-${ENV}-debian-${IMAGE_VERSION}-virtualbox.box --name ${IMAGE}-${ENV}-debian --force
 	printf "${COLOR_INFO}Install test ansible galaxy roles into ${COLOR_RESET}tests/vagrant/ansible/roles\n"
 	#cd tests/vagrant && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
 	printf "${COLOR_INFO}Launch test vagrant ${COLOR_RESET}\n"
-	-cd tests/vagrant && vagrant destroy --force && vagrant up --provider=virtualbox && vagrant ssh && vagrant destroy -f
+	-cd test && vagrant destroy --force && vagrant up --provider=virtualbox && vagrant ssh && vagrant destroy -f
 
 ## Build - App - Dev @ Docker
 build-app-dev@docker: IMAGE             = app
