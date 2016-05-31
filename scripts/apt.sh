@@ -21,5 +21,5 @@ EOF
 
 apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net 1394DEA3
 
-apt-get -y update
+apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
