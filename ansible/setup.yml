@@ -47,7 +47,6 @@
 
     manala_ansible_galaxy_roles:
       - manala.ansible-galaxy
-      - manala.apt
       - manala.skeleton
 
   roles:
