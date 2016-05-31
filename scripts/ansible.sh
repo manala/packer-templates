@@ -5,9 +5,12 @@ DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install ansibl
 cat <<EOF > /etc/ansible/hosts
 localhost ansible_connection=local ansible_become=true
 
-[env_$ENV]
+[app_$ENV]
 localhost
 
-[env_$ENV:vars]
+[app_$ENV:vars]
 env=$ENV
+
+[app:children]
+app_$ENV
 EOF
