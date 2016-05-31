@@ -26,6 +26,9 @@ Debian 8 - amd64
 ### 3.0.3
 
 * Remove deploy manala ansible role (preferred way is now to install it locally, so that one can deploy without having vagrant box or docker container running)
+* Keep bzip2 installed for further virtualbox guest additions usage
+* Always use apt-get --no-install-recommends option
+* Update ansible hosts from env_dev to app/app_dev
 
 ### 3.0.2
 
