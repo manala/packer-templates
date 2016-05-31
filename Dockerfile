@@ -28,7 +28,7 @@ RUN ansible-playbook \
 image='$IMAGE' \
 image_description='$IMAGE_DESCRIPTION' \
 image_version='$IMAGE_VERSION'" \
-        ansible/skeleton.yml
+        ansible/app.yml
 
 RUN sudo sh scripts/clean.sh
 

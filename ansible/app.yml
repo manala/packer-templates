@@ -12,8 +12,8 @@
     # Manala - Skeleton #
     #####################
 
-    manala_skeleton:     "manala_{{ image|replace('-', '_') }}"
-    manala_skeleton_env: "{{ env }}"
+    manala_skeleton_name: "manala_{{ image|replace('-', '_') }}"
+    manala_skeleton_env:  "{{ env }}"
     manala_skeleton_patterns_hashes:
       - app_patterns
 
@@ -22,7 +22,7 @@
     #######
 
     app_patterns:
-      motd: "{{ image_description }} - {{ image_version }}"
+      motd_message: "{{ image_description }} - {{ image_version }}"
 
   roles:
     - role: manala.skeleton
