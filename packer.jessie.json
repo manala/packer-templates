@@ -15,11 +15,11 @@
             "ssh_username"         : "root",
             "ssh_wait_timeout"     : "30m",
             "shutdown_command"     : "/sbin/shutdown -h now",
-            "http_directory"       : "http",
+            "http_directory"       : "preseed",
             "boot_command"         : [
                 "<esc><wait>",
                 "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/jessie.cfg <wait>",
                 "debian-installer=en_US <wait>",
                 "auto <wait>",
                 "locale=en_US <wait>",
@@ -37,7 +37,7 @@
                 ["modifyvm", "{{.Name}}", "--memory", "1024"],
                 ["modifyvm", "{{.Name}}", "--cpus", "1"]
             ],
-            "vm_name": "{{user `image`}}"
+            "vm_name": "{{user `image`}}-{{user `image_env`}}-debian-{{user `image_version`}}"
         }
     ],
     "provisioners": [
@@ -51,7 +51,7 @@
                 "scripts/virtualbox.sh"
             ],
             "environment_vars": [
-                "ENV={{user `env`}}"
+                "ENV={{user `image_env`}}"
             ]
         },
         {
@@ -65,7 +65,7 @@
             "playbook_file"   : "ansible/app.yml",
             "extra_arguments" : [
                 "--extra-vars",
-                "'image=\"{{user `image`}}\" image_description=\"{{user `image_description`}}\" image_version=\"{{user `image_version`}}\" env=\"{{user `env`}}\"'"
+                "'image=\"{{user `image`}}\" image_description=\"{{user `image_description`}}\" image_version=\"{{user `image_version`}}\" env=\"{{user `image_env`}}\"'"
             ]
         },
         {
@@ -80,7 +80,7 @@
         [
             {
                 "type"              : "vagrant",
-                "output"            : "{{user `image`}}-{{user `env`}}-debian-{{user `image_version`}}-virtualbox.box",
+                "output"            : "{{user `image`}}-{{user `image_env`}}-debian-{{user `image_version`}}-virtualbox.box",
                 "compression_level" : 9
             }
         ]
