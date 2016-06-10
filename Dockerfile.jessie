@@ -14,8 +14,8 @@ WORKDIR /tmp
 
 COPY scripts scripts
 
-RUN sh scripts/apt.sh \
-    && sh scripts/ansible.sh
+RUN bash scripts/apt.sh \
+    && bash scripts/ansible.sh
 
 COPY ansible ansible
 
@@ -30,6 +30,6 @@ image_description='$IMAGE_DESCRIPTION' \
 image_version='$IMAGE_VERSION'" \
         ansible/app.yml
 
-RUN sudo sh scripts/clean.sh
+RUN sudo bash scripts/clean.sh
 
 WORKDIR /srv/app
