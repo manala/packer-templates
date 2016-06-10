@@ -253,5 +253,5 @@ _test@docker:
 		--volume `pwd`/test:/srv/app \
 		--tty -i \
 		--hostname ${IMAGE}-${IMAGE_ENV}-debian.test \
-		manala/${IMAGE}-${IMAGE_ENV}-debian \
+		manala/${IMAGE}-${IMAGE_ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR} \
 		/bin/bash
