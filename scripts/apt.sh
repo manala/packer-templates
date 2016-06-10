@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Get debian version (wheezy,jessie,...)
 VERSION=$(cat /etc/os-release | sed -n 's/.*VERSION="[0-9] (\(.*\))"/\1/p')
 
@@ -22,4 +24,4 @@ EOF
 apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net 1394DEA3
 
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
+apt-get -y dist-upgrade

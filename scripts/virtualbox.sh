@@ -1,13 +1,15 @@
 #!/bin/bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Remove standard virtualbox packages
 apt-get -y purge --auto-remove virtualbox-\*
 
 # Install dependencies
-DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install bzip2
+apt-get -y --no-install-recommends install bzip2
 
 # Install build dependencies & packages
-DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install dkms linux-headers-$(uname -r)
+apt-get -y --no-install-recommends install dkms linux-headers-$(uname -r)
 
 # Install the virtualbox guest additions
 cd ~
