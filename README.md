@@ -9,7 +9,7 @@ Debian 8 - amd64
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
 * VirtualBox Guest Additions 5.0.20 (dkms, linux-headers)
-* Ansible 2.0.2.0
+* Ansible 2.1.0.0
 * Vim 7.4
 * Git 2.1.4
 * Oh-my-zsh
@@ -22,6 +22,12 @@ Debian 8 - amd64
   * manala.ansible-galaxy
   * manala.apt
   * manala.skeleton (with dependencies)
+
+### 3.0.4
+
+* Update to debian 8.5
+* Update to ansible 2.1.0.0
+* Pre-install relevant apt keys
 
 ### 3.0.3
 
