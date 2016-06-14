@@ -23,6 +23,10 @@ Debian 8 - amd64
   * manala.apt
   * manala.skeleton (with dependencies)
 
+### 3.0.5
+
+* Introduce ansible group "app_local"
+
 ### 3.0.4
 
 * Update to debian 8.5
@@ -76,6 +80,10 @@ Debian 7 - amd64
   * manala.ansible-galaxy
   * manala.apt
   * manala.skeleton (with dependencies)
+
+### 2.0.2
+
+* Introduce ansible group "app_local"
 
 ### 2.0.1
 

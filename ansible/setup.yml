@@ -35,11 +35,11 @@
     # Manala - Locales #
     ####################
 
-    manala_locales:
+    manala_locales_codes:
       - name:  en_US.UTF-8
         state: absent
 
-    manala_locales_default: C.UTF-8
+    manala_locales_codes_default: C.UTF-8
 
     ###########################
     # Manala - Ansible Galaxy #
