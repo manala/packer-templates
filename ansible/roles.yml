@@ -1,4 +1,4 @@
 - src: manala.sudo
-- src: manala.users
+- src: manala.accounts
 - src: manala.locales
 - src: manala.ansible-galaxy
