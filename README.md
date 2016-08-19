@@ -8,8 +8,8 @@ Debian 8 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.0.20 (dkms, linux-headers)
-* Ansible 2.1.0.0
+* VirtualBox Guest Additions 5.0.26 (dkms, linux-headers)
+* Ansible 2.1.1.0
 * Vim 7.4
 * Git 2.1.4
 * Oh-my-zsh
@@ -17,11 +17,19 @@ Debian 8 - amd64
 * MailHog 0.2.0
 * Supervisor 3.2.0
 * Ntp 4.2.6
-* Ngrok 2.0.25
+* Ngrok 2.1.3
 * Pre-installed manala ansible roles
   * manala.ansible-galaxy
   * manala.apt
   * manala.skeleton (with dependencies)
+
+### 3.0.7
+
+* Rollback to VirtualBox Guest Additions 5.0.26
+
+### 3.0.6
+
+* Don't pre-install relevant apt keys anymore
 
 ### 3.0.5
 
@@ -66,8 +74,8 @@ Debian 7 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.0.20 (dkms, linux-headers)
-* Ansible 2.1.0.0
+* VirtualBox Guest Additions 5.0.26 (dkms, linux-headers)
+* Ansible 2.1.1.0
 * Vim 7.4
 * Git 1.9.1
 * Oh-my-zsh
@@ -75,11 +83,19 @@ Debian 7 - amd64
 * MailHog 0.2.0
 * Supervisor 3.2.0
 * Ntp 4.2.6p5
-* Ngrok 2.0.25
+* Ngrok 2.1.3
 * Pre-installed manala ansible roles
   * manala.ansible-galaxy
   * manala.apt
   * manala.skeleton (with dependencies)
+
+### 2.0.4
+
+* Rollback to VirtualBox Guest Additions 5.0.26
+
+### 2.0.3
+
+* Don't pre-install relevant apt keys anymore
 
 ### 2.0.2
 
