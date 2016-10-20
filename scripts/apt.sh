@@ -18,7 +18,7 @@ deb-src http://httpredir.debian.org/debian $VERSION-updates main contrib non-fre
 EOF
 
 cat <<EOF > /etc/apt/sources.list.d/debian_manala_io.list
-deb http://debian.manala.io $VERSION main
+deb [arch=amd64] http://debian.manala.io $VERSION main
 EOF
 
 apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net 1394DEA3
