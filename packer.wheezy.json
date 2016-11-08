@@ -15,11 +15,11 @@
             "ssh_username"         : "root",
             "ssh_wait_timeout"     : "30m",
             "shutdown_command"     : "/sbin/shutdown -h now",
-            "http_directory"       : "preseed",
+            "http_directory"       : ".",
             "boot_command"         : [
                 "<esc><wait>",
                 "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/wheezy.cfg <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseeds/wheezy.cfg <wait>",
                 "debian-installer=en_US <wait>",
                 "auto <wait>",
                 "locale=en_US <wait>",
