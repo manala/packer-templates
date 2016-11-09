@@ -234,7 +234,7 @@ _build@vagrant:
 		-var 'image_description=${IMAGE_DESCRIPTION}' \
 		-var 'image_version=${IMAGE_VERSION}' \
 		-var 'image_env=${IMAGE_ENV}' \
-		packer.${IMAGE_DEBIAN}.json
+		${IMAGE_DEBIAN}.json
 
 _test@vagrant:
 	printf "${COLOR_INFO}Run ${COLOR_RESET}manala/${IMAGE}-${IMAGE_ENV}-debian\n"
