@@ -71,7 +71,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/clean.sh",
-                "scripts/clean-virtualbox.sh"
+                "scripts/clean-disk.sh"
             ]
         }
     ],
