@@ -56,12 +56,11 @@
         },
         {
             "type": "ansible-local",
-            "playbook_dir": "ansible",
-            "playbook_file": "ansible/setup.yml"
+            "playbook_file": "ansible/setup.yml",
+            "galaxy_file": "ansible/roles/requirements.yml"
         },
         {
             "type": "ansible-local",
-            "playbook_dir": "ansible",
             "playbook_file": "ansible/app.yml",
             "extra_arguments": [
                 "--extra-vars",

@@ -42,11 +42,6 @@ clean:
 	printf "${COLOR_INFO}Clean output files ${COLOR_RESET}\n"
 	rm -Rf output-*
 
-## Update
-update:
-	printf "${COLOR_INFO}Install ansible galaxy roles into ${COLOR_RESET}ansible/roles\n"
-	rm -Rf ansible/roles/* && ansible-galaxy install -f -r ansible/roles.yml -p ansible/roles
-
 #################
 # App - Dev - 3 #
 #################
@@ -61,7 +56,7 @@ build-app-dev-3@vagrant: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_3_PATCH}
 build-app-dev-3@vagrant: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-dev-3@vagrant: IMAGE_DEBIAN         = jessie
 build-app-dev-3@vagrant: IMAGE_DESCRIPTION    = App - Dev - Debian
-build-app-dev-3@vagrant: clean update _build@vagrant
+build-app-dev-3@vagrant: clean _build@vagrant
 
 ## Test - App - Dev - 3 @ Vagrant
 test-app-dev-3@vagrant: IMAGE               = app
@@ -82,7 +77,7 @@ build-app-dev-3@docker: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_3_PATCH}
 build-app-dev-3@docker: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-dev-3@docker: IMAGE_DEBIAN         = jessie
 build-app-dev-3@docker: IMAGE_DESCRIPTION    = App - Dev - Debian
-build-app-dev-3@docker: clean update _build@docker
+build-app-dev-3@docker: clean _build@docker
 
 ## Test - App - Dev - 3 @ Docker
 test-app-dev-3@docker: IMAGE               = app
@@ -105,7 +100,7 @@ build-app-php-dev-3@docker: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_3_PATCH}
 build-app-php-dev-3@docker: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-php-dev-3@docker: IMAGE_DEBIAN         = jessie
 build-app-php-dev-3@docker: IMAGE_DESCRIPTION    = App - Php - Dev - Debian
-build-app-php-dev-3@docker: clean update _build@docker
+build-app-php-dev-3@docker: clean _build@docker
 
 ## Test - App - Php - Dev - 3 @ Docker
 test-app-php-dev-3@docker: IMAGE               = app-php
@@ -128,7 +123,7 @@ build-app-test-3@docker: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_3_PATCH}
 build-app-test-3@docker: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-test-3@docker: IMAGE_DEBIAN         = jessie
 build-app-test-3@docker: IMAGE_DESCRIPTION    = App - Test - Debian
-build-app-test-3@docker: clean update _build@docker
+build-app-test-3@docker: clean _build@docker
 
 ## Test - App - Test - 3 @ Docker
 test-app-test-3@docker: IMAGE               = app
@@ -151,7 +146,7 @@ build-app-dev-2@vagrant: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_2_PATCH}
 build-app-dev-2@vagrant: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-dev-2@vagrant: IMAGE_DEBIAN         = wheezy
 build-app-dev-2@vagrant: IMAGE_DESCRIPTION    = App - Dev - Debian
-build-app-dev-2@vagrant: clean update _build@vagrant
+build-app-dev-2@vagrant: clean _build@vagrant
 
 ## Test - App - Dev - 2 @ Vagrant
 test-app-dev-2@vagrant: IMAGE               = app
@@ -172,7 +167,7 @@ build-app-dev-2@docker: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_2_PATCH}
 build-app-dev-2@docker: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-dev-2@docker: IMAGE_DEBIAN         = wheezy
 build-app-dev-2@docker: IMAGE_DESCRIPTION    = App - Dev - Debian
-build-app-dev-2@docker: clean update _build@docker
+build-app-dev-2@docker: clean _build@docker
 
 ## Test - App - Dev - 2 @ Docker
 test-app-dev-2@docker: IMAGE               = app
@@ -195,7 +190,7 @@ build-app-php-dev-2@docker: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_2_PATCH}
 build-app-php-dev-2@docker: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-php-dev-2@docker: IMAGE_DEBIAN         = wheezy
 build-app-php-dev-2@docker: IMAGE_DESCRIPTION    = App - Php - Dev - Debian
-build-app-php-dev-2@docker: clean update _build@docker
+build-app-php-dev-2@docker: clean _build@docker
 
 ## Test - App - Php - Dev - 2 @ Docker
 test-app-php-dev-2@docker: IMAGE               = app-php
@@ -218,7 +213,7 @@ build-app-test-2@docker: IMAGE_VERSION_PATCH  = ${IMAGE_VERSION_2_PATCH}
 build-app-test-2@docker: IMAGE_VERSION        = ${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}
 build-app-test-2@docker: IMAGE_DEBIAN         = jessie
 build-app-test-2@docker: IMAGE_DESCRIPTION    = App - Test - Debian
-build-app-test-2@docker: clean update _build@docker
+build-app-test-2@docker: clean _build@docker
 
 ## Test - App - Test - 2 @ Docker
 test-app-test-2@docker: IMAGE               = app
