@@ -2,7 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get -y --no-install-recommends install ansible
+apt-get -y --no-install-recommends install ansible alt-galaxy
 
 cat <<EOF > /etc/ansible/hosts
 localhost ansible_connection=local ansible_become=true
