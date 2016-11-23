@@ -1,6 +1,7 @@
 {
     "builders": [
         {
+            "name": "vagrant",
             "type": "virtualbox-iso",
             "guest_os_type": "Debian_64",
             "format": "ovf",
@@ -19,7 +20,7 @@
             "boot_command": [
                 "<esc><wait>",
                 "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseeds/wheezy.cfg <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
                 "debian-installer=en_US <wait>",
                 "auto <wait>",
                 "locale=en_US <wait>",
@@ -37,7 +38,14 @@
                 ["modifyvm", "{{.Name}}", "--memory", "1024"],
                 ["modifyvm", "{{.Name}}", "--cpus", "1"]
             ],
-            "vm_name": "{{user `image`}}-{{user `image_env`}}-debian-{{user `image_version`}}"
+            "vm_name": "{{user `image`}}-{{user `image_env`}}-debian-{{user `image_version_major`}}.{{user `image_version_minor`}}.{{user `image_version_patch`}}"
+        },
+        {
+            "name": "docker",
+            "type": "docker",
+            "image": "debian:wheezy",
+            "pull": true,
+            "commit": true
         }
     ],
     "provisioners": [
@@ -46,13 +54,19 @@
             "scripts": [
                 "scripts/apt.sh",
                 "scripts/ansible.sh",
-                "scripts/nfs.sh",
-                "scripts/grub.sh",
-                "scripts/virtualbox.sh"
+                "scripts/nfs.sh"
             ],
             "environment_vars": [
                 "ENV={{user `image_env`}}"
             ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/grub.sh",
+                "scripts/virtualbox.sh"
+            ],
+            "only": ["vagrant"]
         },
         {
             "type": "ansible-local",
@@ -64,23 +78,36 @@
             "playbook_file": "ansible/app.yml",
             "extra_arguments": [
                 "--extra-vars",
-                "'image=\"{{user `image`}}\" image_description=\"{{user `image_description`}}\" image_version=\"{{user `image_version`}}\" env=\"{{user `image_env`}}\"'"
+                "'image=\"{{user `image`}}\" image_description=\"{{user `image_description`}}\" image_version=\"{{user `image_version_major`}}.{{user `image_version_minor`}}.{{user `image_version_patch`}}\" env=\"{{user `image_env`}}\"'"
             ]
         },
         {
             "type": "shell",
             "scripts": [
-                "scripts/clean.sh",
-                "scripts/clean-disk.sh"
+                "scripts/clean.sh"
             ]
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/clean-disk.sh"
+            ],
+            "only": ["vagrant"]
         }
     ],
     "post-processors": [
         [
             {
                 "type": "vagrant",
-                "output": "{{user `image`}}-{{user `image_env`}}-debian-{{user `image_version`}}-virtualbox.box",
-                "compression_level": 9
+                "output": "{{user `image`}}-{{user `image_env`}}-debian-{{user `image_version_major`}}.{{user `image_version_minor`}}.{{user `image_version_patch`}}-virtualbox.box",
+                "compression_level": 9,
+                "only": ["vagrant"]
+            },
+            {
+                "type": "docker-tag",
+                "repository": "manala/{{user `image`}}-{{user `image_env`}}-debian",
+                "tag": "{{user `image_version_major`}}.{{user `image_version_minor`}}",
+                "only": ["docker"]
             }
         ]
     ]

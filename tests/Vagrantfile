@@ -51,7 +51,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision 'ansible_local' do |ansible|
     ansible.provisioning_path = '/srv/app/ansible'
-    ansible.playbook          = 'playbook.yml'
+    ansible.playbook          = 'app.yml'
     ansible.sudo              = true
   end
 
