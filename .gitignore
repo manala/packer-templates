@@ -3,9 +3,6 @@
 /*.box
 /*.tar
 
-/ansible/roles/*.*/
-
-/test/.vagrant/
-/test/ansible/roles/*.*/
-/test/var/*
-!test/var/.gitkeep
+/tests/.vagrant/
+/tests/var/*
+!tests/var/.gitkeep
