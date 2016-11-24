@@ -45,12 +45,7 @@
             "type": "docker",
             "image": "debian:jessie",
             "pull": true,
-            "commit": true,
-            "author": "Manala <contact@manala.io>",
-            "changes": [
-                "USER app",
-                "WORKDIR /srv/app"
-            ]
+            "commit": true
         }
     ],
     "provisioners": [
