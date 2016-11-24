@@ -133,7 +133,7 @@ test:
 			--tty -i \
 			--hostname ${IMAGE}-${IMAGE_ENV}-debian.test \
 			manala/${IMAGE}-${IMAGE_ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR} \
-			/bin/bash \
+			/bin/zsh \
 	; else \
 		echo "${COLOR_INFO}Add vagrant box${COLOR_RESET}" \
 		&& vagrant box add ${IMAGE}-${IMAGE_ENV}-debian-${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR}.${IMAGE_VERSION_PATCH}-virtualbox.box --name ${IMAGE}-${IMAGE_ENV}-debian --force \
