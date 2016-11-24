@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Add rsync package
+- Add curl package
+- Add ssl-cert package
 - Install alt-galaxy as a (faster) alternative to ansible-galaxy
 
 ### Changed
