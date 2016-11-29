@@ -106,7 +106,19 @@
             {
                 "type": "docker-tag",
                 "repository": "manala/{{user `image`}}-{{user `image_env`}}-debian",
+                "tag": "{{user `image_version_major`}}.{{user `image_version_minor`}}.{{user `image_version_patch`}}",
+                "only": ["docker"]
+            },
+            {
+                "type": "docker-tag",
+                "repository": "manala/{{user `image`}}-{{user `image_env`}}-debian",
                 "tag": "{{user `image_version_major`}}.{{user `image_version_minor`}}",
+                "only": ["docker"]
+            },
+            {
+                "type": "docker-tag",
+                "repository": "manala/{{user `image`}}-{{user `image_env`}}-debian",
+                "tag": "{{user `image_version_major`}}",
                 "only": ["docker"]
             }
         ]
