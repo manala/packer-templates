@@ -12,8 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Install alt-galaxy as a (faster) alternative to ansible-galaxy
 
 ### Changed
-- App user uid/gid hardly set to 1337/1337
 - Vagrant: remove google dns servers
+- App user uid/gid hardly set to 1337/1337
+- Vagrant: update VirtualBox Guest Additions to 5.1.10
 
 ### Fixed
 - Fix manala debian repository source
