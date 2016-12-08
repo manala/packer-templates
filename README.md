@@ -14,10 +14,10 @@ Debian 8 - amd64
 * Nfs support (nfs-common, cachefilesd)
 * VirtualBox Guest Additions 5.1.10 (dkms, linux-headers)
 * Ansible 2.2.0.0
-* Alt Galaxy 1.2.0
+* Alt Galaxy 1.3.3
 * Vim 7.4
 * Git 2.1.4
-* Htop 1.0.3
+* Htop 2.0.2
 * Rsync 3.1.1
 * Curl 7.38.0
 * Oh-my-zsh
