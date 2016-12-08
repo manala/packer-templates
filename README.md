@@ -14,13 +14,14 @@ Debian 7 - amd64
 * Nfs support (nfs-common, cachefilesd)
 * VirtualBox Guest Additions 5.1.10 (dkms, linux-headers)
 * Ansible 2.2.0.0
-* Alt Galaxy 1.2.0
+* Alt Galaxy 1.3.3
 * Vim 7.4
 * Git 1.9.1
 * Htop 1.0.1
 * Rsync 3.0.9
 * Curl 7.26.0
 * Oh-my-zsh
+* The Fuck 3.11
 * Make 3.81
 * MailHog 0.2.1
 * Supervisor 3.3.1
