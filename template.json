@@ -45,7 +45,13 @@
             "type": "docker",
             "image": "debian:wheezy",
             "pull": true,
-            "commit": true
+            "commit": true,
+            "author": "Manala <contact@manala.io>",
+            "message": "{{user `image_description`}} - {{user `image_version_major`}}.{{user `image_version_minor`}}.{{user `image_version_patch`}}",
+            "changes": [
+                "USER app",
+                "WORKDIR /srv/app"
+            ]
         }
     ],
     "provisioners": [
