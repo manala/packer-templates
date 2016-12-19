@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Packer 0.12+
+* Packer 0.12.1+
 
 ## App - Dev - Debian
 
