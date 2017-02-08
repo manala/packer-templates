@@ -7,9 +7,9 @@
             "format": "ovf",
             "headless": true,
             "iso_urls": [
-                "http://cdimage.debian.org/debian-cd/8.6.0/amd64/iso-cd/debian-8.6.0-amd64-netinst.iso"
+                "http://cdimage.debian.org/debian-cd/8.7.1/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso"
             ],
-            "iso_checksum": "e9f61bf327db6d8f7cee05a99f2353cc",
+            "iso_checksum": "453312bf56fc45669fec5ebc0f025ac7",
             "iso_checksum_type": "md5",
             "disk_size": 65536,
             "hard_drive_interface": "sata",
