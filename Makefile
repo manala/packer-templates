@@ -130,7 +130,7 @@ test:
 		&& docker run \
 			--rm \
 			--volume `pwd`/tests:/srv/app \
-			--tty -i \
+			--tty --interactive \
 			--privileged \
 			--hostname ${IMAGE}-${IMAGE_ENV}-debian.test \
 			manala/${IMAGE}-${IMAGE_ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR} \
@@ -143,5 +143,5 @@ test:
 		&& vagrant destroy --force \
 		&& vagrant up --provider=virtualbox \
 		&& vagrant ssh \
-		&& vagrant destroy -f \
+		&& vagrant destroy --force \
 	; fi
