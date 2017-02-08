@@ -1,1 +1,1 @@
-<?php var_dump('Hello world!') ?>
+<?php phpinfo() ?>
