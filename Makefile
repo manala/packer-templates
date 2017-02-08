@@ -131,6 +131,7 @@ test:
 			--rm \
 			--volume `pwd`/tests:/srv/app \
 			--tty -i \
+			--privileged \
 			--hostname ${IMAGE}-${IMAGE_ENV}-debian.test \
 			manala/${IMAGE}-${IMAGE_ENV}-debian:${IMAGE_VERSION_MAJOR}.${IMAGE_VERSION_MINOR} \
 			/bin/zsh \
