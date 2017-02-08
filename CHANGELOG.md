@@ -5,17 +5,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.5] - 2017-02-08
 ### Added
 - Add rsync package
 - Add curl package
 - Add ssl-cert package
-- Install alt-galaxy as a (faster) alternative to ansible-galaxy
+- Install alt-galaxy as a (lot faster) alternative to ansible-galaxy
 - Add The Fuck package
+- Add debfoster package (useful for complex ansible roles, such as php)
+- Add docker package
+- Gitsplit
+- Htop
 
 ### Changed
 - Vagrant: remove google dns servers
 - App user uid/gid hardly set to 1337/1337
-- Vagrant: update VirtualBox Guest Additions to 5.1.10
+- Vagrant: update VirtualBox Guest Additions to 5.1.14
 
 ### Fixed
 - Fix manala debian repository source

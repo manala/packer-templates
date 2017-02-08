@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Packer 0.12.1+
+* Packer 0.12.2+
 
 ## App - Dev - Debian
 
@@ -12,11 +12,14 @@ Debian 7 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.1.10 (dkms, linux-headers)
+* VirtualBox Guest Additions 5.1.14 (dkms, linux-headers)
 * Ansible 2.2.0.0
 * Alt Galaxy 1.3.3
+* Docker 1.13.0
 * Vim 7.4
+* Debfoster 2.7
 * Git 1.9.1
+* Gitsplit
 * Htop 1.0.1
 * Rsync 3.0.9
 * Curl 7.26.0
