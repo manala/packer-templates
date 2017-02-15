@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.6] - 2017-02-15
+### Changed
+- Switch to debian backports openssl to allow ed25519 keys
+
 ## [2.0.5] - 2017-02-08
 ### Added
 - Add rsync package
