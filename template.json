@@ -126,12 +126,6 @@
                 "repository": "manala/{{user `image`}}-{{user `image_env`}}-debian",
                 "tag": "{{user `image_version_major`}}",
                 "only": ["docker"]
-            },
-            {
-                "type": "docker-tag",
-                "repository": "manala/{{user `image`}}-{{user `image_env`}}-debian",
-                "tag": "latest",
-                "only": ["docker"]
             }
         ]
     ]
