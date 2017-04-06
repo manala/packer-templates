@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Packer 0.12.2+
+* Packer 0.12.3+
 
 ## App - Dev - Debian
 
@@ -12,13 +12,13 @@ Debian 8 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.1.14 (dkms, linux-headers)
+* VirtualBox Guest Additions 5.1.18 (dkms, linux-headers)
 * Ansible 2.2.0.0
 * Alt Galaxy 1.3.3
-* Docker 1.13.0
+* Docker 17.04.0
 * Vim 7.4
 * Debfoster 2.7
-* Git 2.1.4
+* Git 2.11.0
 * Gitsplit
 * Htop 2.0.2
 * Rsync 3.1.1
@@ -29,7 +29,7 @@ Debian 8 - amd64
 * MailHog 0.2.1
 * Supervisor 3.3.1
 * Ntp 4.2.6
-* Ngrok 2.1.18
+* Ngrok 2.2.3
 * Pre-installed manala ansible roles
   * manala.ansible-galaxy
   * manala.skeleton (with dependencies)

@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.9] - 2017-04-06
+### Changed
+- Update VirtualBox Guest Additions 5.1.18
+- Update Docker 17.04.0
+- Update Git 2.11.0
+- Update Ngrok 2.2.3
+
+### Fixed
+- Docker bridge network "docker0" is now absent on first boot, thanks to
+  docker socket used instead of docker service. Mainly fix vagrant nfs mounts,
+  where network interfaces were unfortunately swapped.
+
 ## [3.0.8] - 2017-02-08
 ### Added
 - Add rsync package
