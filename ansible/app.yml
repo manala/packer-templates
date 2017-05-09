@@ -25,4 +25,4 @@
       motd_message: "{{ image_description }} - {{ image_version }}"
 
   roles:
-    - role: manala.skeleton
+    #- role: manala.skeleton
