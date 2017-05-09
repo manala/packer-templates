@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [3.0.10] - 2017-05-09
 ### Changed
 - Update to debian 8.8.0
 - Update VirtualBox Guest Additions 5.1.22
