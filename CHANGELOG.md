@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Update to debian 8.8.0
 - Update VirtualBox Guest Additions 5.1.22
+- Update Docker 17.05.0
+- Update Mailhog 1.0.0
 
 ## [3.0.9] - 2017-04-06
 ### Changed
