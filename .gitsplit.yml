@@ -1,0 +1,15 @@
+# Used to speed up the split over time by reusing git's objects
+cache_dir: "./.gitsplit"
+
+# List of splits.
+splits:
+  - prefix: app-dev-debian.2
+    target: git@github.com:manala/packer-template-app-dev-debian.2
+  - prefix: app-dev-debian.3
+    target: git@github.com:manala/packer-template-app-dev-debian.3
+  - prefix: app-dev-debian.4
+    target: git@github.com:manala/packer-template-app-dev-debian.4
+
+# List of references to split (defined as regexp)
+origins:
+  - ^master$
