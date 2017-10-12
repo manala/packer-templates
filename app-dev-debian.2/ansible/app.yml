@@ -1,0 +1,28 @@
+---
+
+- hosts: all
+
+  vars:
+
+    #image:             app
+    #image_description: Foo bar
+    #image_version:     x.x.x
+
+    #####################
+    # Manala - Skeleton #
+    #####################
+
+    manala_skeleton_name: "manala_{{ image|replace('-', '_') }}"
+    manala_skeleton_env:  "{{ env }}"
+    manala_skeleton_patterns_hashes:
+      - app_patterns
+
+    #######
+    # App #
+    #######
+
+    app_patterns:
+      motd_message: "{{ image_description }} - {{ image_version }}"
+
+  roles:
+    #- role: manala.skeleton
