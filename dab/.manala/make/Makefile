@@ -45,8 +45,7 @@ MANALA_PACKER_VAR       = \
 	template_description=$(call escape_spaces,$(TEMPLATE_DESCRIPTION)) \
 	template_version=$(TEMPLATE_VERSION) \
 	template_version_major=$(call semver_major,$(TEMPLATE_VERSION)) \
-	template_version_minor=$(call semver_minor,$(TEMPLATE_VERSION)) \
-	template_version_patch=$(call semver_patch,$(TEMPLATE_VERSION)) \
+	template_version_major_minor=$(call semver_major_minor,$(TEMPLATE_VERSION)) \
 	template_author=$(call escape_spaces,$(MANALA_CONTACT)) \
 	template_dir=$(TEMPLATE_DIR) \
 	template_dist_dir=$(TEMPLATE_DIST_DIR) \
@@ -144,6 +143,14 @@ DEPLOY_HELP = \
 DEPLOY_HELP += $(call if_in,vagrant.virtualbox,$(TEMPLATE_PLATFORMS),$(call help,deploy.vagrant.virtualbox,Deploy - Vagrant/VirtualBox))
 deploy.vagrant.virtualbox: PLATFORM = vagrant.virtualbox
 deploy.vagrant.virtualbox:
-	$(call fail_if_not_in,$(PLATFORM),$(TEMPLATE_PLATFORMS),Sh for \"$(PLATFORM)\" platform is not supported)
+	$(call fail_if_not_in,$(PLATFORM),$(TEMPLATE_PLATFORMS),Deploy for \"$(PLATFORM)\" platform is not supported)
 	$(call fail_if_not,$(DEPLOY_VAGRANT_HOST),DEPLOY_VAGRANT_HOST is empty or not set)
 	scp $(TEMPLATE_VAGRANT_BOX) $(DEPLOY_VAGRANT_HOST)
+
+DEPLOY_HELP += $(call if_in,docker,$(TEMPLATE_PLATFORMS),$(call help,deploy.docker,            Deploy - Docker))
+deploy.docker: PLATFORM = docker
+deploy.docker:
+	$(call fail_if_not_in,$(PLATFORM),$(TEMPLATE_PLATFORMS),Deploy for \"$(PLATFORM)\" platform is not supported)
+	$(call docker_push,$(MANALA_DOCKER_IMAGE):$(TEMPLATE_VERSION))
+	$(call docker_push,$(MANALA_DOCKER_IMAGE):$(call semver_major_minor,$(TEMPLATE_VERSION)))
+	$(call docker_push,$(MANALA_DOCKER_IMAGE):$(call semver_major,$(TEMPLATE_VERSION)))

@@ -5,8 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Some virtualbox vm tweaks
+- Packaged Vagrantfile with structuring default options
+- Exa 0.8.0
+- HTTPie 0.9.8
+
 ### Changed
-- Update to debian 8.9.0
+- Update to debian 8.10.0
+- Update VirtualBox Guest Additions 5.1.30
+- Less verbose ansible configuration
+- Update Ansible 2.3.2.0
+- Update Docker 17.09.0
+- Update Ngrok 2.2.8
 
 ## [3.0.10] - 2017-05-09
 ### Changed

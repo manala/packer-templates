@@ -129,7 +129,7 @@
       - localhost
 
     manala_ansible_host_vars:
-      - file: localhost.yml
+      - file: localhost.yaml
         vars:
           - ansible_connection: local
           - ansible_become: true

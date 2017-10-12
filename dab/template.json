@@ -4,8 +4,7 @@
     "template_description": null,
     "template_version": null,
     "template_version_major": null,
-    "template_version_minor": null,
-    "template_version_patch": null,
+    "template_version_major_minor": null,
     "template_author": null,
     "template_dir": null,
     "template_dist_dir": null,
@@ -21,8 +20,8 @@
       "guest_os_type": "Debian_64",
       "format": "ovf",
       "headless": "{{user `builder_headless`}}",
-      "iso_url": "http://cdimage.debian.org/debian-cd/9.2.1/amd64/iso-cd/debian-9.2.1-amd64-netinst.iso",
-      "iso_checksum_url": "http://cdimage.debian.org/debian-cd/9.2.1/amd64/iso-cd/MD5SUMS",
+      "iso_url": "http://cdimage.debian.org/mirror/cdimage/release/9.3.0/amd64/iso-cd/debian-9.3.0-amd64-netinst.iso",
+      "iso_checksum_url": "http://cdimage.debian.org/mirror/cdimage/release/9.3.0/amd64/iso-cd/MD5SUMS",
       "iso_checksum_type": "md5",
       "iso_interface": "ide",
       "disk_size": 8192,
@@ -89,13 +88,15 @@
     {
       "type": "shell",
       "inline": [
-        "/tmp/manala/debian/apt/setup_sources.sh",
-        "/tmp/manala/debian/apt/upgrade.sh",
-        "/tmp/manala/debian/virtualbox/setup_network.sh",
-        "/tmp/manala/debian/virtualbox/install_additions.sh",
-        "/tmp/manala/debian/grub/setup_timeout.sh",
-        "/tmp/manala/debian/accounts/setup_manala.sh",
-        "/tmp/manala/vagrant/accounts/setup_manala.sh"
+        "cd /tmp/manala",
+        "./debian/apt/setup_sources.sh",
+        "./debian/apt/update.sh",
+        "./debian/apt/upgrade.sh",
+        "./debian/virtualbox/setup_network.sh",
+        "./debian/virtualbox/install_additions.sh",
+        "./debian/grub/setup_timeout.sh",
+        "./debian/accounts/setup_manala.sh",
+        "./vagrant/accounts/setup_manala.sh"
       ]
     },
     {

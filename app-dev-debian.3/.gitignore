@@ -1,11 +1,2 @@
-/packer_cache/
-/output-*
-/*.box
-/*.tar
-
-/tests/.vagrant/
-/tests/var/*
-!tests/var/.gitkeep
-
-/tests/ansible/roles/*
-!tests/ansible/roles/requirements.yml
+/.cache/
+.env

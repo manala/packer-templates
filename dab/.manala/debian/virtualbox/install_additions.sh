@@ -2,6 +2,8 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+printf "[\033[36mManala\033[0m] \033[32mDebian - VirtualBox - Install additions\033[0m\n"
+
 # Remove standard virtualbox packages
 apt-get -y purge --auto-remove virtualbox-\*
 

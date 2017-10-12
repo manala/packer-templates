@@ -1,0 +1,5 @@
+- src: manala.sudo
+- src: manala.accounts
+- src: manala.locales
+- src: manala.ansible
+- src: manala.ansible-galaxy

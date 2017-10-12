@@ -1,5 +1,7 @@
 #!/bin/sh
 
+printf "[\033[36mManala\033[0m] \033[32mDebian - Cleanup\033[0m\n"
+
 # Delete all Linux headers
 dpkg --list \
   | awk '{ print $2 }' \
