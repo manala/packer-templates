@@ -25,6 +25,7 @@ include \
 TEMPLATE_DIR        := $(MANALA_CURRENT_DIR)
 TEMPLATE_DIST_DIR    = $(TEMPLATE_DIR)/dist
 TEMPLATE_CACHE_DIR   = $(TEMPLATE_DIR)/.cache
+TEMPLATE_VAGRANT_BOX = $(TEMPLATE_DIST_DIR)/$(TEMPLATE)-$(TEMPLATE_VERSION)-$(PLATFORM_VARIANT).box
 
 ############
 # Platform #
@@ -61,7 +62,7 @@ export PACKER_CACHE_DIR = $(TEMPLATE_CACHE_DIR)/packer
 ###########
 
 MANALA_VAGRANT_FORCE   := 1
-MANALA_VAGRANT_BOX      = $(TEMPLATE_DIST_DIR)/$(TEMPLATE)-$(TEMPLATE_VERSION)-$(PLATFORM_VARIANT).box
+MANALA_VAGRANT_BOX      = $(TEMPLATE_VAGRANT_BOX)
 MANALA_VAGRANT_BOX_NAME = $(TEMPLATE)
 
 export VAGRANT_CWD          = $(TEMPLATE_DIR)/vagrant
@@ -107,7 +108,7 @@ build.docker: build
 # Sh #
 ######
 
-MANALA_HELP += $(SH_HELP)
+MANALA_HELP += $(SH_HELP)\n
 
 SH_HELP = \
 	$(call help_section,Template platform shell)
@@ -130,3 +131,19 @@ sh.docker: PLATFORM = docker
 sh.docker:
 	$(call fail_if_not_in,$(PLATFORM),$(TEMPLATE_PLATFORMS),Sh for \"$(PLATFORM)\" platform is not supported)
 	$(call docker_run)
+
+##########
+# Deploy #
+##########
+
+MANALA_HELP += $(DEPLOY_HELP)
+
+DEPLOY_HELP = \
+	$(call help_section,Deploy)
+
+DEPLOY_HELP += $(call if_in,vagrant.virtualbox,$(TEMPLATE_PLATFORMS),$(call help,deploy.vagrant.virtualbox,Deploy - Vagrant/VirtualBox))
+deploy.vagrant.virtualbox: PLATFORM = vagrant.virtualbox
+deploy.vagrant.virtualbox:
+	$(call fail_if_not_in,$(PLATFORM),$(TEMPLATE_PLATFORMS),Sh for \"$(PLATFORM)\" platform is not supported)
+	$(call fail_if_not,$(DEPLOY_VAGRANT_HOST),DEPLOY_VAGRANT_HOST is empty or not set)
+	scp $(TEMPLATE_VAGRANT_BOX) $(DEPLOY_VAGRANT_HOST)
