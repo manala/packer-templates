@@ -11,7 +11,7 @@ include .manala/make/Makefile
 ############
 
 TEMPLATE             = dab
-TEMPLATE_DESCRIPTION = Dab
-TEMPLATE_VERSION     = 5.1.0
+TEMPLATE_DESCRIPTION = Debian Appliance Builder
+TEMPLATE_VERSION     = 3.0.6
 TEMPLATE_MOUNT_DIR   = /srv/template
 TEMPLATE_PLATFORMS   = vagrant.virtualbox
