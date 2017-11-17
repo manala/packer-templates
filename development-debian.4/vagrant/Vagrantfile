@@ -1,0 +1,12 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+
+  # Vm
+  config.vm.box      = 'development-debian'
+  config.vm.hostname = 'development-debian.4.vagrant.virtualbox'
+
+  config.vm.synced_folder '..', '/srv'
+
+end

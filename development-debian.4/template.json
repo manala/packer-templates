@@ -1,0 +1,187 @@
+{
+  "variables": {
+    "template": null,
+    "template_description": null,
+    "template_version": null,
+    "template_version_major": null,
+    "template_version_minor": null,
+    "template_version_patch": null,
+    "template_author": null,
+    "template_dir": null,
+    "template_dist_dir": null,
+    "manala_dir": null,
+    "platform": null,
+    "platform_variant": null,
+    "builder_headless": "true"
+  },
+  "builders": [
+    {
+      "name": "vagrant.virtualbox",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Debian_64",
+      "format": "ovf",
+      "headless": "{{user `builder_headless`}}",
+      "iso_url": "http://cdimage.debian.org/debian-cd/9.2.1/amd64/iso-cd/debian-9.2.1-amd64-netinst.iso",
+      "iso_checksum_url": "http://cdimage.debian.org/debian-cd/9.2.1/amd64/iso-cd/MD5SUMS",
+      "iso_checksum_type": "md5",
+      "iso_interface": "ide",
+      "disk_size": 65536,
+      "hard_drive_interface": "sata",
+      "ssh_username": "root",
+      "ssh_wait_timeout": "30m",
+      "shutdown_command": "/sbin/shutdown -hP now",
+      "http_directory": ".",
+      "boot_command": [
+        "<esc><wait>",
+        "install <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
+        "auto <wait>",
+        "locale=en_US.UTF-8 <wait>",
+        "kbd-chooser/method=us <wait>",
+        "netcfg/get_hostname={{user `template`}} <wait>",
+        "netcfg/get_domain= <wait>",
+        "fb=false <wait>",
+        "debconf/frontend=noninteractive <wait>",
+        "console-setup/ask_detect=false <wait>",
+        "console-keymaps-at/keymap=us <wait>",
+        "keyboard-configuration/xkb-keymap=us <wait>",
+        "<enter><wait>"
+      ],
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "1024"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"],
+        ["modifyvm", "{{.Name}}", "--usb", "off"],
+        ["modifyvm", "{{.Name}}", "--audio", "none"],
+        ["modifyvm", "{{.Name}}", "--natdnshostresolver1", "on"],
+        ["modifyvm", "{{.Name}}", "--natdnsproxy1", "on"],
+        ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"],
+        ["modifyvm", "{{.Name}}", "--pae", "on"],
+        ["modifyvm", "{{.Name}}", "--acpi", "on"],
+        ["modifyvm", "{{.Name}}", "--ioapic", "on"],
+        ["modifyvm", "{{.Name}}", "--chipset", "ich9"],
+        ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype2", "virtio"],
+        ["storagectl", "{{.Name}}", "--name", "SATA Controller", "--controller", "IntelAHCI", "--portcount", "1", "--hostiocache", "on"],
+        ["storageattach", "{{.Name}}", "--storagectl", "SATA Controller", "--port", "0", "--device", "0", "--nonrotational", "on"]
+      ],
+      "vm_name": "{{user `template`}}-{{user `template_version`}}",
+      "export_opts": [
+        "--manifest",
+        "--vsys", "0",
+        "--description", "{{user `template_description`}}",
+        "--version", "{{user `template_version`}}"
+      ]
+    },
+    {
+      "name": "docker",
+      "type": "docker",
+      "image": "debian:stretch",
+      "pull": true,
+      "commit": true,
+      "container_dir": "/tmp/packer",
+      "author": "{{user `template_author`}}",
+      "message": "{{user `template_description`}} - {{user `template_version`}}",
+      "changes": [
+        "USER manala",
+        "WORKDIR /srv",
+        "CMD /bin/bash"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "mkdir --parents /tmp/manala"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "{{user `manala_dir`}}/",
+      "destination": "/tmp/manala"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/manala/debian/apt/setup_sources.sh",
+        "/tmp/manala/debian/apt/setup_sources_manala.sh",
+        "/tmp/manala/debian/apt/upgrade.sh",
+        "/tmp/manala/debian/nfs/install_client.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/manala/debian/virtualbox/setup_network.sh",
+        "/tmp/manala/debian/virtualbox/install_additions.sh",
+        "/tmp/manala/debian/grub/setup_timeout.sh"
+      ],
+      "only": ["vagrant.virtualbox"]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "mkdir --parents /tmp/ansible"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "{{user `template_dir`}}/ansible/",
+      "destination": "/tmp/ansible"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/manala/debian/ansible/install.sh",
+        "alt-galaxy install --role-file=/tmp/ansible/roles/requirements.yml --roles-path=/tmp/ansible/roles --force",
+        "ansible-playbook /tmp/ansible/setup.yml --extra-vars '{\"platform\":\"{{user `platform`}}\",\"template_description\":\"{{user `template_description`}}\",\"template_version\":\"{{user `template_version`}}\"}'",
+        "rm --recursive --force /tmp/ansible"
+      ],
+      "environment_vars": [
+        "ANSIBLE_FORCE_COLOR=1"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/manala/debian/cleanup.sh",
+        "rm --recursive --force /tmp/manala"
+      ]
+    },
+    {
+      "type": "shell",
+      "script": "{{user `manala_dir`}}/debian/virtualbox/minimize.sh",
+      "only": ["vagrant.virtualbox"]
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "output": "{{user `template_dist_dir`}}/{{user `template`}}-{{user `template_version`}}-{{user `platform_variant`}}.box",
+        "vagrantfile_template": "{{user `template_dir`}}/vagrant/Vagrantfile.template",
+        "compression_level": 9,
+        "only": ["vagrant.virtualbox"]
+      },
+      {
+        "type": "docker-tag",
+        "repository": "manala/{{user `template`}}",
+        "tag": "{{user `template_version`}}",
+        "only": ["docker"]
+      },
+      {
+        "type": "docker-tag",
+        "repository": "manala/{{user `template`}}",
+        "tag": "{{user `template_version_major`}}.{{user `template_version_minor`}}",
+        "only": ["docker"]
+      },
+      {
+        "type": "docker-tag",
+        "repository": "manala/{{user `template`}}",
+        "tag": "{{user `template_version_major`}}",
+        "only": ["docker"]
+      }
+    ]
+  ]
+}
