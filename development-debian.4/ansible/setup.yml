@@ -5,6 +5,19 @@
   vars:
 
     #################
+    # Manala - Motd #
+    #################
+
+    manala_motd_template: template/elao.j2
+    manala_motd_message:  "{{ template_description }} - {{ template_version }}"
+
+    ################
+    # Manala - Git #
+    ################
+
+    manala_git_config_template: config/default.dev.j2
+
+    #################
     # Manala - Sudo #
     #################
 
@@ -37,6 +50,17 @@
           - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
 
     ####################
+    # Manala - Ohmyzsh #
+    ####################
+
+    manala_ohmyzsh_users:
+      - user:     manala
+        group:    manala
+        template: users/default.dev.j2
+        config:
+          - "[ -d /srv ] && cd /srv"
+
+    ####################
     # Manala - Locales #
     ####################
 
@@ -45,6 +69,15 @@
         state: absent
 
     manala_locales_codes_default: C.UTF-8
+
+    ################
+    # Manala - Ssh #
+    ################
+
+    # Replace by direct config as soon as manala.ssh role is ready for stretch
+    manala_ssh_config_sshd_template: config/sshd/default.dev.j2
+    #manala_ssh_config_sshd:
+    #  - Key: value
 
     ####################
     # Manala - Ansible #
@@ -70,7 +103,13 @@
           - ansible_become: true
 
   roles:
+    - role: manala.motd
+    - role: manala.git
+    - role: manala.zsh
     - role: manala.sudo
     - role: manala.accounts
+    - role: manala.ohmyzsh
     - role: manala.locales
+    - role: manala.ssh
+    - role: manala.make
     - role: manala.ansible

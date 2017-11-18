@@ -1,4 +1,10 @@
+- src: manala.motd
+- src: manala.git
+- src: manala.zsh
 - src: manala.sudo
 - src: manala.accounts
+- src: manala.ohmyzsh
 - src: manala.locales
+- src: manala.ssh
+- src: manala.make
 - src: manala.ansible

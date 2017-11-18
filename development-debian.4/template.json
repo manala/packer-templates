@@ -85,7 +85,7 @@
       "changes": [
         "USER manala",
         "WORKDIR /srv",
-        "CMD /bin/bash"
+        "CMD /bin/zsh"
       ]
     }
   ],
@@ -107,6 +107,7 @@
         "/tmp/manala/debian/apt/setup_sources.sh",
         "/tmp/manala/debian/apt/setup_sources_manala.sh",
         "/tmp/manala/debian/apt/upgrade.sh",
+        "/tmp/manala/debian/systemd/install.sh",
         "/tmp/manala/debian/nfs/install_client.sh"
       ]
     },
@@ -118,6 +119,13 @@
         "/tmp/manala/debian/grub/setup_timeout.sh"
       ],
       "only": ["vagrant.virtualbox"]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/manala/debian/systemd/disable_tty1.sh"
+      ],
+      "only": ["docker"]
     },
     {
       "type": "shell",
