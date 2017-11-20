@@ -4,8 +4,8 @@
 Vagrant.configure('2') do |config|
 
   # Vm
-  config.vm.box      = 'development-debian'
-  config.vm.hostname = 'development-debian.4.vagrant.virtualbox'
+  config.vm.box      = 'devbox-debian'
+  config.vm.hostname = 'devbox-debian.4.vagrant.virtualbox'
 
   config.vm.synced_folder '..', '/srv'
 
