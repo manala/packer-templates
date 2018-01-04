@@ -58,9 +58,6 @@
           - system_warnings: false
           - deprecation_warnings: false
           - command_warnings: false
-          - fact_caching: jsonfile
-          - fact_caching_connection: /var/cache/ansible
-          - fact_caching_timeout: 86400
           - retry_files_enabled: false
 
     manala_ansible_hosts:
