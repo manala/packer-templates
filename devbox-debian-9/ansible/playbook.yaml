@@ -115,7 +115,7 @@
     manala_ansible_config:
       - defaults:
           - force_color: 1
-          - stdout_callback: full_skip
+          - stdout_callback: skippy
           - display_skipped_hosts: false
           - system_warnings: false
           - deprecation_warnings: false
