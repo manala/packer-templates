@@ -2,6 +2,8 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
+printf "[\033[36mManala\033[0m] \033[32mDebian - Accounts - Setup manala\033[0m\n"
+
 apt-get -y --no-install-recommends install sudo
 
 cat <<EOF > /etc/sudoers.d/manala

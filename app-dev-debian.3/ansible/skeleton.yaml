@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+
+  vars:
+
+    #####################
+    # Manala - Skeleton #
+    #####################
+
+    manala_skeleton_name: manala_app
+    manala_skeleton_env:  dev
+    manala_skeleton_options_hashes:
+      - host_options
+    manala_skeleton_patterns_hashes:
+      - template_patterns
+
+    ############
+    # Template #
+    ############
+
+    template_patterns:
+      motd_message: "{{ template_description }} - {{ template_version }}"
+
+  roles:
+    - role: manala.skeleton

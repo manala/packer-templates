@@ -1,5 +1,7 @@
 #!/bin/sh
 
+printf "[\033[36mManala\033[0m] \033[32mDebian - VirtualBox - Minimize\033[0m\n"
+
 # Whiteout root
 count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
 count=$(($count-1))

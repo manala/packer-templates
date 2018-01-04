@@ -1,10 +1,10 @@
-# Skeleton
+# Packer Template: App Dev Debian - 3
 
 ## Requirements
 
-* Packer 1.0.0+
+* Packer 1.1.3+
 
-## App - Dev - Debian
+## Desription
 
 Debian 8 - amd64
 
@@ -12,10 +12,10 @@ Debian 8 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.1.22 (dkms, linux-headers)
-* Ansible 2.2.0.0
+* VirtualBox Guest Additions 5.1.30 (dkms, linux-headers)
+* Ansible 2.3.2.0
 * Alt Galaxy 1.3.3
-* Docker 17.05.0
+* Docker 17.09.0
 * Vim 7.4
 * Debfoster 2.7
 * Git 2.11.0
@@ -29,7 +29,9 @@ Debian 8 - amd64
 * MailHog 1.0.0
 * Supervisor 3.3.1
 * Ntp 4.2.6
-* Ngrok 2.2.3
+* Ngrok 2.2.8
+* HTTPie 0.9.8
+* Exa 0.8.0
 * Pre-installed manala ansible roles
   * manala.ansible-galaxy
   * manala.skeleton (with dependencies)

@@ -1,10 +1,10 @@
-# Skeleton
+# Packer Template: App Dev Debian - 2
 
 ## Requirements
 
-* Packer 1.0.0+
+* Packer 1.1.3+
 
-## App - Dev - Debian
+## Desription
 
 Debian 7 - amd64
 
