@@ -12,10 +12,10 @@ Debian 8 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.1.30 (dkms, linux-headers)
-* Ansible 2.3.2.0
+* VirtualBox Guest Additions 5.2.4 (dkms, linux-headers)
+* Ansible 2.4.2.0
 * Alt Galaxy 1.3.3
-* Docker 17.09.0
+* Docker 17.12.0
 * Vim 7.4
 * Debfoster 2.7
 * Git 2.11.0

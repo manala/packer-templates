@@ -6,17 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Some virtualbox vm tweaks
-- Packaged Vagrantfile with structuring default options
+- Virtualbox tweaks (usb off, audio none, chipset ich9, nictype virtio, sata ahci/iocache/nonrotational)
+- Packaged Vagrantfile with structuring default options (ssh username/forward_agent)
 - Exa 0.8.0
 - HTTPie 0.9.8
 
 ### Changed
 - Update to debian 8.10.0
-- Update VirtualBox Guest Additions 5.1.30
-- Less verbose ansible configuration
-- Update Ansible 2.3.2.0
-- Update Docker 17.09.0
+- Update VirtualBox Guest Additions 5.2.4
+- Quieter ansible configuration (stdout_callback skippy, display_skipped_hosts false
+  system_warnings false, deprecation_warnings false, command_warnings false,
+  retry_files_enabled false)
+- Update Ansible 2.4.2.0
+- Update Docker 17.12.0
 - Update Ngrok 2.2.8
 
 ## [3.0.10] - 2017-05-09
