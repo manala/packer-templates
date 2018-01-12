@@ -8,16 +8,18 @@ printf "[\033[36mManala\033[0m] \033[32mDebian - VirtualBox - Install additions\
 apt-get -y purge --auto-remove virtualbox-\*
 
 # Install dependencies
-apt-get -y --no-install-recommends install bzip2
+apt-get -y --no-install-recommends install bzip2 dkms
 
-# Install build dependencies & packages
-apt-get -y --no-install-recommends install dkms linux-headers-$(uname -r)
+# Install build dependencies
+apt-get -y --no-install-recommends install linux-headers-amd64
 
 # Install the virtualbox guest additions
-mount --options loop ~/VBoxGuestAdditions.iso /mnt
-sh /mnt/VBoxLinuxAdditions.run
-umount /mnt
+mkdir -p /mnt/VBoxGuestAdditions
+mount --options loop ~/VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
+sh /mnt/VBoxGuestAdditions/VBoxLinuxAdditions.run
+umount /mnt/VBoxGuestAdditions
+rm -Rf /mnt/VBoxGuestAdditions
 rm -f VBoxGuestAdditions.iso
 
-# Remove build dependencies & packages
-apt-get -y purge --auto-remove dkms linux-headers-$(uname -r)
+# Remove build dependencies
+apt-get -y purge --auto-remove linux-headers-amd64
