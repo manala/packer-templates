@@ -79,7 +79,6 @@
       "pull": true,
       "commit": true,
       "container_dir": "/tmp/packer",
-      "author": "{{user `template_author`}}",
       "message": "{{user `template_description`}} - {{user `template_version`}}",
       "changes": [
         "LABEL maintainer=\"{{user `template_author`}}\" description=\"{{user `template_description`}}\" version=\"{{user `template_version`}}\"",
