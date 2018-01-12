@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update Docker 17.09.0
 - Update Ngrok 2.2.8
 
+### Fixed
+- Don't remove "dkms" debian package anymore, so that VirtualBox Guest
+  Additions kernel modules are still loaded after a kernel upgrade
+
 ## [3.0.10] - 2017-05-09
 ### Changed
 - Update to debian 8.8.0

@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Vagrant: update VirtualBox Guest Additions to 5.1.22
 
+### Fixed
+- Don't remove "dkms" debian package anymore, so that VirtualBox Guest
+  Additions kernel modules are still loaded after a kernel upgrade
+
 ## [2.0.6] - 2017-02-15
 ### Changed
 - Switch to debian backports openssl to allow ed25519 keys
