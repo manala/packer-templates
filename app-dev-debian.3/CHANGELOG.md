@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [3.0.11] - 2018-01-15
 ### Added
 - Virtualbox tweaks (usb off, audio none, chipset ich9, nictype virtio, sata ahci/iocache/nonrotational)
 - Packaged Vagrantfile with structuring default options (ssh username/forward_agent)
