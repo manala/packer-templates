@@ -59,8 +59,6 @@
         ["modifyvm", "{{.Name}}", "--acpi", "on"],
         ["modifyvm", "{{.Name}}", "--ioapic", "on"],
         ["modifyvm", "{{.Name}}", "--chipset", "ich9"],
-        ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
-        ["modifyvm", "{{.Name}}", "--nictype2", "virtio"],
         ["storagectl", "{{.Name}}", "--name", "SATA Controller", "--controller", "IntelAHCI", "--portcount", "1", "--hostiocache", "on"],
         ["storageattach", "{{.Name}}", "--storagectl", "SATA Controller", "--port", "0", "--device", "0", "--nonrotational", "on"]
       ],
