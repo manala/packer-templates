@@ -8,10 +8,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get --yes purge --auto-remove virtualbox-\*
 
 # Install dependencies
-apt-get --quiet --verbose-versions --yes --no-install-recommends install bzip2 dkms
-
-# Install build dependencies
-apt-get --quiet --verbose-versions --yes --no-install-recommends install linux-headers-amd64
+apt-get --quiet --verbose-versions --yes --no-install-recommends install bzip2 dkms linux-headers-amd64
 
 # Install the virtualbox guest additions
 mkdir -p /mnt/VBoxGuestAdditions
@@ -20,6 +17,3 @@ sh /mnt/VBoxGuestAdditions/VBoxLinuxAdditions.run
 umount /mnt/VBoxGuestAdditions
 rm -Rf /mnt/VBoxGuestAdditions
 rm -f VBoxGuestAdditions.iso
-
-# Remove build dependencies
-apt-get --yes --auto-remove purge linux-headers-amd64

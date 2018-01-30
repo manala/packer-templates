@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Don't remove "dkms" debian package anymore, so that VirtualBox Guest
   Additions kernel modules are still loaded after a kernel upgrade
+- Keep current linux headers installed so that VirtualBox Guest Additions could be
+  re-compiled in case of kernel update
 
 ## [2.0.6] - 2017-02-15
 ### Changed
