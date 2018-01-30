@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [3.0.11] - 2018-01-15
 ### Added
-- Virtualbox tweaks (usb off, audio none, chipset ich9, nictype virtio, sata ahci/iocache/nonrotational)
+- VirtualBox tweaks (usb off, audio none, chipset ich9, nictype virtio, sata ahci/iocache/nonrotational)
 - Packaged Vagrantfile with structuring default options (ssh username/forward_agent)
 - Exa 0.8.0
 - HTTPie 0.9.8
