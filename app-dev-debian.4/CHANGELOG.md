@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Update VirtualBox Guest Additions 5.2.6
+
 ### Fixed
 - Don't pre-create VirtualBox network interfaces anymore (let VirtualBox decides
   which one is the best for targetted plateform, as "virtio" cause nfs issues)

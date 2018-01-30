@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- Vagrant: update VirtualBox Guest Additions to 5.2.4
+- Update VirtualBox Guest Additions 5.2.6
 
 ### Fixed
 - Don't remove "dkms" debian package anymore, so that VirtualBox Guest
