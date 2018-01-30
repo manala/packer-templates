@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Keep current linux headers installed so that VirtualBox Guest Additions could be
   re-compiled in case of kernel update
 
+### Added
+- Include template version in VirtualBox machine description
+
 ## [2.0.6] - 2017-02-15
 ### Changed
 - Switch to debian backports openssl to allow ed25519 keys

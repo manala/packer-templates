@@ -66,8 +66,7 @@
       "export_opts": [
         "--manifest",
         "--vsys", "0",
-        "--description", "{{user `template_description`}}",
-        "--version", "{{user `template_version`}}"
+        "--description", "{{user `template_description`}} - {{user `template_version`}}"
       ]
     },
     {

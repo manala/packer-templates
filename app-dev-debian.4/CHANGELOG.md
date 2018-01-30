@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Keep current linux headers installed so that VirtualBox Guest Additions could be
   re-compiled in case of kernel update
 
+### Added
+- Include template version in VirtualBox machine description
+
 ## [4.0.0] - 2018-01-15
 ### Added
 - Initial release
