@@ -154,3 +154,4 @@ deploy.docker:
 	$(call docker_push,$(MANALA_DOCKER_IMAGE):$(TEMPLATE_VERSION))
 	$(call docker_push,$(MANALA_DOCKER_IMAGE):$(call semver_major_minor,$(TEMPLATE_VERSION)))
 	$(call docker_push,$(MANALA_DOCKER_IMAGE):$(call semver_major,$(TEMPLATE_VERSION)))
+	$(if $(TEMPLATE_VERSION_LATEST),$(call docker_push,$(MANALA_DOCKER_IMAGE):latest))

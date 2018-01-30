@@ -74,7 +74,8 @@
     {
       "type": "shell",
       "inline": [
-        "mkdir --parents /tmp/manala"
+        "mkdir --parents /tmp/manala",
+        "mkdir --parents /tmp/dab"
       ]
     },
     {
@@ -86,20 +87,15 @@
       "type": "shell",
       "inline": [
         "cd /tmp/manala",
-        "./debian/apt/setup_sources.sh",
-        "./debian/apt/update.sh",
-        "./debian/apt/upgrade.sh",
-        "./debian/virtualbox/setup_network.sh",
+        "./debian/apt/setup.sh",
+        "./debian/apt/setup_manala.sh",
+        "./system/update.sh",
+        "./debian/virtualbox/setup.sh",
         "./debian/virtualbox/install_additions.sh",
-        "./debian/grub/setup_timeout.sh",
+        "./debian/grub/setup.sh",
+        "./debian/sudo/install.sh",
         "./debian/accounts/setup_manala.sh",
         "./vagrant/accounts/setup_manala.sh"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "mkdir --parents /tmp/dab"
       ]
     },
     {
@@ -118,12 +114,13 @@
       "type": "shell",
       "inline": [
         "/tmp/manala/debian/cleanup.sh",
-        "rm --recursive --force /tmp/manala"
+        "rm --recursive --force /tmp/manala",
+        "rm --recursive --force /tmp/dab"
       ]
     },
     {
       "type": "shell",
-      "script": "{{user `manala_dir`}}/debian/virtualbox/minimize.sh"
+      "script": "{{user `manala_dir`}}/debian/virtualbox/cleanup.sh"
     }
   ],
   "post-processors": [
