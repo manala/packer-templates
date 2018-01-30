@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [4.0.1] - 2018-01-30
 ### Changed
 - Update VirtualBox Guest Additions 5.2.6
 
