@@ -4,11 +4,11 @@
 # Manala #
 ##########
 
-MANALA_DIR := $(abspath $(patsubst %/make/Makefile,%,$(firstword $(filter %.manala/make/Makefile,$(MAKEFILE_LIST)))))
+MANALA_MAKE_DIR := $(abspath $(patsubst %/Makefile,%,$(lastword $(MAKEFILE_LIST))))
 
 include \
-	$(MANALA_DIR)/make/Makefile.manala \
-	$(MANALA_DIR)/make/Makefile.gitsplit
+	$(MANALA_MAKE_DIR)/Makefile.manala \
+	$(MANALA_MAKE_DIR)/Makefile.gitsplit
 
 #########
 # Split #
