@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [3.0.12] - 2018-02-07
+## [3.0.13] - 2018-02-07
 ### Removed
 - Packaged Vagrantfile with structuring default options (resulted in issues with
   duplicated network adapters)
