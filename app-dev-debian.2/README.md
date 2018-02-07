@@ -13,9 +13,8 @@ Debian 7 - amd64
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
 * VirtualBox Guest Additions 5.2.6 (dkms, linux-headers)
-* Ansible 2.2.0.0
+* Ansible 2.4.3.0
 * Alt Galaxy 1.3.3
-* Docker 1.13.0
 * Vim 7.4
 * Debfoster 2.7
 * Git 1.9.1
@@ -24,12 +23,11 @@ Debian 7 - amd64
 * Rsync 3.0.9
 * Curl 7.26.0
 * Oh-my-zsh
-* The Fuck 3.11
 * Make 3.81
-* MailHog 0.2.1
+* MailHog 1.0.0
 * Supervisor 3.3.1
 * Ntp 4.2.6p5
-* Ngrok 2.1.18
+* Ngrok 2.2.8
 * Pre-installed manala ansible roles
   * manala.ansible-galaxy
   * manala.skeleton (with dependencies)

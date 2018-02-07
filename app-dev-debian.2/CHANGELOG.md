@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Update VirtualBox Guest Additions 5.2.6
+- Quieter ansible configuration (stdout_callback skippy, display_skipped_hosts false
+  system_warnings false, deprecation_warnings false, command_warnings false,
+  retry_files_enabled false)
+- Update Ansible 2.4.3.0
+- Update Mailhog 1.0.0
+- Update Ngrok 2.2.8
 
 ### Fixed
 - Don't remove "dkms" debian package anymore, so that VirtualBox Guest
@@ -15,7 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   re-compiled in case of kernel update
 
 ### Added
+- VirtualBox tweaks (usb off, audio none, chipset ich9, sata ahci/iocache/nonrotational)
 - Include template version in VirtualBox machine description
+
+### Removed
+- Docker package
+- The Fuck package
 
 ## [2.0.6] - 2017-02-15
 ### Changed

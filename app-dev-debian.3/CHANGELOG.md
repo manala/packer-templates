@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Packaged Vagrantfile with structuring default options (resulted in issues with
   duplicated network adapters)
 
+### Changed
+- Update Ansible 2.4.3.0
+
 ## [3.0.12] - 2018-01-30
 ### Changed
 - Update VirtualBox Guest Additions 5.2.6
