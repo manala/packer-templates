@@ -103,6 +103,7 @@
       "inline": [
         "cd /tmp/manala",
         "./debian/apt/setup.sh",
+        "./debian/apt/setup_backports.sh",
         "./debian/apt/setup_manala.sh",
         "./system/update.sh"
       ]
