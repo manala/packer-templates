@@ -166,7 +166,6 @@
       {
         "type": "vagrant",
         "output": "{{user `template_dist_dir`}}/{{user `template`}}-{{user `template_version`}}-{{user `platform_variant`}}.box",
-        "vagrantfile_template": "{{user `template_dir`}}/vagrant/Vagrantfile.template",
         "compression_level": 9,
         "only": ["vagrant.virtualbox"]
       },

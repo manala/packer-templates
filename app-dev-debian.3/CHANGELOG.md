@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Removed
+- Packaged Vagrantfile with structuring default options (resulted in issues with
+  duplicated network adapters)
 
 ## [3.0.12] - 2018-01-30
 ### Changed
