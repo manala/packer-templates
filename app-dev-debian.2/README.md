@@ -4,7 +4,7 @@
 
 * Packer 1.1.3+
 
-## Desription
+## Description
 
 Debian 7 - amd64
 
