@@ -1,7 +1,7 @@
 # Packer Template: Devbox - Debian 9
 ## Requirements
 
-* Packer 1.1.3+
+* Packer 1.2.0+
 
 ## Description
 
