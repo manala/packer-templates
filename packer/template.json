@@ -1,0 +1,140 @@
+{
+  "variables": {
+    "template": null,
+    "template_description": null,
+    "template_version": null,
+    "template_version_major": null,
+    "template_version_major_minor": null,
+    "template_author": null,
+    "template_dir": null,
+    "template_dist_dir": null,
+    "manala_dir": null,
+    "platform": null,
+    "platform_variant": null,
+    "builder_headless": "true"
+  },
+  "builders": [
+    {
+      "name": "vagrant.virtualbox",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Debian_64",
+      "format": "ovf",
+      "headless": "{{user `builder_headless`}}",
+      "iso_url": "http://cdimage.debian.org/mirror/cdimage/release/9.4.0/amd64/iso-cd/debian-9.4.0-amd64-netinst.iso",
+      "iso_checksum_url": "http://cdimage.debian.org/mirror/cdimage/release/9.4.0/amd64/iso-cd/MD5SUMS",
+      "iso_checksum_type": "md5",
+      "iso_interface": "ide",
+      "disk_size": 8192,
+      "hard_drive_interface": "sata",
+      "ssh_username": "root",
+      "ssh_wait_timeout": "30m",
+      "shutdown_command": "/sbin/shutdown -hP now",
+      "http_directory": ".",
+      "boot_command": [
+        "<esc><wait>",
+        "install <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/preseed.cfg <wait>",
+        "debian-installer=en_US.UTF-8 <wait>",
+        "auto <wait>",
+        "locale=en_US.UTF-8 <wait>",
+        "kbd-chooser/method=us <wait>",
+        "netcfg/get_hostname={{user `template`}} <wait>",
+        "netcfg/get_domain= <wait>",
+        "fb=false <wait>",
+        "debconf/frontend=noninteractive <wait>",
+        "console-setup/ask_detect=false <wait>",
+        "console-keymaps-at/keymap=us <wait>",
+        "keyboard-configuration/xkb-keymap=us <wait>",
+        "<enter><wait>"
+      ],
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "1024"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"],
+        ["modifyvm", "{{.Name}}", "--usb", "off"],
+        ["modifyvm", "{{.Name}}", "--audio", "none"],
+        ["modifyvm", "{{.Name}}", "--natdnshostresolver1", "on"],
+        ["modifyvm", "{{.Name}}", "--natdnsproxy1", "on"],
+        ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"],
+        ["modifyvm", "{{.Name}}", "--pae", "on"],
+        ["modifyvm", "{{.Name}}", "--acpi", "on"],
+        ["modifyvm", "{{.Name}}", "--ioapic", "on"],
+        ["modifyvm", "{{.Name}}", "--chipset", "ich9"],
+        ["storagectl", "{{.Name}}", "--name", "SATA Controller", "--controller", "IntelAHCI", "--portcount", "1", "--hostiocache", "on"],
+        ["storageattach", "{{.Name}}", "--storagectl", "SATA Controller", "--port", "0", "--device", "0", "--nonrotational", "on"]
+      ],
+      "vm_name": "{{user `template`}}-{{user `template_version`}}",
+      "export_opts": [
+        "--manifest",
+        "--vsys", "0",
+        "--description", "{{user `template_description`}} - {{user `template_version`}}"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "mkdir --parents /tmp/manala",
+        "mkdir --parents /tmp/packer"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "{{user `manala_dir`}}/",
+      "destination": "/tmp/manala"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "cd /tmp/manala",
+        "./debian/apt/setup.sh",
+        "./debian/apt/setup_manala.sh",
+        "./system/update.sh",
+        "./debian/virtualbox/setup.sh",
+        "./debian/virtualbox/install_additions.sh",
+        "./debian/grub/setup.sh",
+        "./debian/sudo/install.sh",
+        "./debian/accounts/setup_manala.sh",
+        "./vagrant/accounts/setup_manala.sh"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "{{user `template_dir`}}/packer/",
+      "destination": "/tmp/packer"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/packer/setup.sh",
+        "rm --recursive --force /tmp/packer"
+      ],
+      "environment_vars": [
+        "VERSION={{user `template_version`}}"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "/tmp/manala/debian/cleanup.sh",
+        "rm --recursive --force /tmp/manala",
+        "rm --recursive --force /tmp/packer"
+      ]
+    },
+    {
+      "type": "shell",
+      "script": "{{user `manala_dir`}}/debian/virtualbox/cleanup.sh"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "output": "{{user `template_dist_dir`}}/{{user `template`}}-{{user `template_version`}}-{{user `platform_variant`}}.box",
+        "vagrantfile_template": "{{user `template_dir`}}/vagrant/Vagrantfile.template",
+        "compression_level": 9,
+        "only": ["vagrant.virtualbox"]
+      }
+    ]
+  ]
+}
