@@ -10,3 +10,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Debian 9.4.0
 - VirtualBox Guest Additions 5.2.8
 - LXC
+- QEMU
