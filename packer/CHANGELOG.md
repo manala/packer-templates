@@ -6,6 +6,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
-- Packer 1.2.1
+- Packer 1.2.2
 - Debian 9.4.0
 - VirtualBox Guest Additions 5.2.8
