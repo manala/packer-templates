@@ -11,3 +11,6 @@ chmod +x /usr/local/bin/packer
 
 # LXC
 apt-get --quiet --verbose-versions --yes --no-install-recommends install lxc debootstrap
+
+# QEMU
+apt-get --quiet --verbose-versions --yes --no-install-recommends install qemu qemu-kvm
