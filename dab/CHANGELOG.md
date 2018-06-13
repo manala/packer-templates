@@ -8,3 +8,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Update Dab 3.0.9
 - Update Debian 9.4.0
+- Update VirtualBox Guest Additions 5.2.12
