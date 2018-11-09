@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Removed
+- Remove custom ansible configuration, due to relative blocking updates
+  (see: https://github.com/hashicorp/vagrant/pull/9957)
 
 ## [3.0.13] - 2018-02-07
 ### Removed
