@@ -12,9 +12,9 @@ Debian 9 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 5.2.6 (dkms, linux-headers)
 * Ansible 2.4.3.0
 * Alt Galaxy 1.3.3
+* VirtualBox Guest Additions 5.2.20 (dkms, linux-headers)
 * Vim 8.0
 * Debfoster 2.7
 * Git 2.14.2
