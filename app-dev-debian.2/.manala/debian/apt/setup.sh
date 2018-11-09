@@ -10,7 +10,9 @@ RELEASE=$(cat /etc/os-release | sed -n 's/.*VERSION="[0-9] (\(.*\))"/\1/p')
 DIR=$(cd $(dirname $0) && pwd)
 
 eval "cat > /etc/apt/sources.list << EOF
-$(cat ${DIR}/sources/list)
+deb http://deb.debian.org/debian ${RELEASE} main
+deb http://deb.debian.org/debian ${RELEASE}-updates main
+deb http://security.debian.org ${RELEASE}/updates main
 EOF"
 
 apt-get --quiet update

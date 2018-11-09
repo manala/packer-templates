@@ -8,7 +8,7 @@ RELEASE=$(cat /etc/os-release | sed -n 's/.*VERSION="[0-9] (\(.*\))"/\1/p')
 DIR=$(cd $(dirname $0) && pwd)
 
 eval "cat > /etc/apt/sources.list.d/debian_manala_io.list << EOF
-$(cat ${DIR}/sources/list_manala)
+deb [arch=amd64] http://debian.manala.io ${RELEASE} main
 EOF"
 
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 1394DEA3

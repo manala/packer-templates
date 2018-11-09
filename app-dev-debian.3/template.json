@@ -3,10 +3,7 @@
     "template": null,
     "template_description": null,
     "template_version": null,
-    "template_version_major": null,
-    "template_version_major_minor": null,
     "template_author": null,
-    "template_dir": null,
     "template_dist_dir": null,
     "manala_dir": null,
     "platform": null,
@@ -86,80 +83,39 @@
     }
   ],
   "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "mkdir --parents /tmp/manala",
-        "mkdir --parents /tmp/ansible"
-      ]
-    },
-    {
-      "type": "file",
-      "source": "{{user `manala_dir`}}/",
-      "destination": "/tmp/manala"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "cd /tmp/manala",
-        "./debian/apt/setup.sh",
-        "./debian/apt/setup_manala.sh",
-        "./system/update.sh",
-        "./debian/systemd/install.sh"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "cd /tmp/manala",
-        "./debian/nfs/install_client.sh",
-        "./debian/virtualbox/setup.sh",
-        "./debian/virtualbox/install_additions.sh",
-        "./debian/grub/setup.sh"
+    { "type": "shell", "scripts": [
+        "{{user `manala_dir`}}/debian/apt/setup.sh",
+        "{{user `manala_dir`}}/debian/apt/setup_manala.sh",
+        "{{user `manala_dir`}}/system/update.sh",
+        "{{user `manala_dir`}}/debian/systemd/install.sh",
+        "{{user `manala_dir`}}/debian/ansible/install.sh"
+    ] },
+    { "type": "shell", "only": ["vagrant.virtualbox"], "scripts": [
+        "{{user `manala_dir`}}/debian/nfs/install_client.sh",
+        "{{user `manala_dir`}}/debian/virtualbox/setup.sh",
+        "{{user `manala_dir`}}/debian/virtualbox/install_additions.sh",
+        "{{user `manala_dir`}}/debian/grub/setup.sh"
+    ] },
+    { "type": "ansible-local",
+      "galaxy_file": "ansible/roles/requirements.yaml",
+      "extra_arguments": [
+        "--extra-vars \"platform=\\\"{{user `platform`}}\\\" template_description=\\\"{{user `template_description`}}\\\" template_version=\\\"{{user `template_version`}}\\\"\""
       ],
-      "only": ["vagrant.virtualbox"]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "cd /tmp/manala",
-        "./debian/docker/cleanup.sh",
-        "./debian/docker/cleanup_systemd.sh"
-      ],
-      "only": ["docker"]
-    },
-    {
-      "type": "file",
-      "source": "{{user `template_dir`}}/ansible/",
-      "destination": "/tmp/ansible"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "cd /tmp/manala",
-        "./debian/ansible/install.sh",
-        "./ansible/update_roles.sh /tmp/ansible/roles/requirements.yaml /tmp/ansible/roles",
-        "ansible-playbook /tmp/ansible/playbook.yaml --extra-vars '{\"platform\":\"{{user `platform`}}\",\"template_description\":\"{{user `template_description`}}\",\"template_version\":\"{{user `template_version`}}\"}'",
-        "ansible-playbook /tmp/ansible/skeleton.yaml --extra-vars '{\"platform\":\"{{user `platform`}}\",\"template_description\":\"{{user `template_description`}}\",\"template_version\":\"{{user `template_version`}}\"}'",
-        "rm --recursive --force /tmp/ansible"
-      ],
-      "environment_vars": [
-        "ANSIBLE_FORCE_COLOR=1"
-      ]
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "/tmp/manala/debian/cleanup.sh",
-        "rm --recursive --force /tmp/manala",
-        "rm --recursive --force /tmp/ansible"
-      ]
-    },
-    {
-      "type": "shell",
-      "script": "{{user `manala_dir`}}/debian/virtualbox/cleanup.sh",
-      "only": ["vagrant.virtualbox"]
-    }
+      "playbook_dir": "ansible",
+      "playbook_files": [
+        "ansible/playbook.yaml",
+        "ansible/skeleton.yaml"
+    ] },
+    { "type": "shell", "scripts": [
+        "{{user `manala_dir`}}/debian/cleanup.sh"
+    ] },
+    { "type": "shell", "only": ["vagrant.virtualbox"], "scripts": [
+        "{{user `manala_dir`}}/debian/virtualbox/cleanup.sh"
+    ] },
+    { "type": "shell", "only": ["docker"], "scripts": [
+        "{{user `manala_dir`}}/debian/docker/cleanup.sh",
+        "{{user `manala_dir`}}/debian/docker/cleanup_systemd.sh"
+    ] }
   ],
   "post-processors": [
     [
@@ -178,13 +134,13 @@
       {
         "type": "docker-tag",
         "repository": "manala/{{user `template`}}",
-        "tag": "{{user `template_version_major_minor`}}",
+        "tag": "{{split (user `template_version`) \".\" 0 }}.{{split (user `template_version`) \".\" 1 }}",
         "only": ["docker"]
       },
       {
         "type": "docker-tag",
         "repository": "manala/{{user `template`}}",
-        "tag": "{{user `template_version_major`}}",
+        "tag": "{{split (user `template_version`) \".\" 0 }}",
         "only": ["docker"]
       }
     ]
