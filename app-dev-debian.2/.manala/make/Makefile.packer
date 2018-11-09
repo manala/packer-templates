@@ -17,5 +17,6 @@ define packer_build
 		$(if $(MANALA_PACKER_ONLY), \
 			-only=$(MANALA_PACKER_ONLY) \
 		) \
+    -timestamp-ui=true \
   	$(MANALA_PACKER_TEMPLATE)
 endef
