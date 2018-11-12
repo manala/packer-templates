@@ -97,6 +97,7 @@
         "{{user `manala_dir`}}/debian/grub/setup.sh"
     ] },
     { "type": "ansible-local",
+      "clean_staging_directory": true,
       "galaxy_file": "ansible/roles/requirements.yaml",
       "extra_arguments": [
         "--extra-vars \"platform=\\\"{{user `platform`}}\\\" template_description=\\\"{{user `template_description`}}\\\" template_version=\\\"{{user `template_version`}}\\\"\""
