@@ -28,7 +28,7 @@ Debian 8 - amd64
 * Supervisor 3.3.1
 * Ntp 4.2.6
 * Ngrok 2.2.8
-* Docker 17.12.0
+* Docker CE 18.06.1
 * The Fuck 3.11
 * Exa 0.8.0
 * HTTPie 0.9.8
