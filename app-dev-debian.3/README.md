@@ -18,7 +18,7 @@ Debian 8 - amd64
 * Vim 7.4
 * Debfoster 2.7
 * Git 2.11.0
-* Gitsplit
+* Gitsplit 2.0
 * Htop 2.0.2
 * Rsync 3.1.1
 * Curl 7.38.0
