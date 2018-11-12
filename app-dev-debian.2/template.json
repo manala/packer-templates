@@ -103,7 +103,7 @@
       ],
       "playbook_dir": "ansible",
       "playbook_files": [
-        "ansible/playbook.yaml",
+        "ansible/setup.yaml",
         "ansible/skeleton.yaml"
     ] },
     { "type": "shell", "scripts": [
