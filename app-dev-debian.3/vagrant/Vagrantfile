@@ -10,12 +10,13 @@ Vagrant.configure('2') do |config|
   config.ssh.forward_agent = true
 
   # Vm
-  config.vm.box      = 'app-dev-debian'
-  config.vm.hostname = 'app-dev-debian.3.vagrant.virtualbox'
-  config.vm.network    'private_network', type: 'dhcp'
-  config.vm.define     'localhost' do |localhost| end
-
-  config.vm.synced_folder '..', '/srv/app'
+  config.vm.box           = 'app-dev-debian'
+  config.vm.hostname      = 'app-dev-debian.3.vagrant.virtualbox'
+  config.vm.network       'private_network', type: 'dhcp'
+  config.vm.define        'localhost' do |localhost| end
+  config.vm.synced_folder '..', '/srv/app',
+    type: 'nfs',
+    mount_options: ['nolock', 'actimeo=1', 'fsc']
 
   # Vm - Provider
   config.vm.provider 'virtualbox'
