@@ -28,7 +28,6 @@ Debian 9 - amd64
 * Supervisor 3.3.1
 * Ntp 4.2.8
 * Ngrok 2.2.8
-* Docker 17.12.0
 * The Fuck 3.11
 * Exa 0.8.0
 * HTTPie 0.9.8

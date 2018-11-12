@@ -19,8 +19,6 @@
     #####################
 
     manala_accounts_groups:
-      - group:  docker
-        system: true
       - group: app
         gid:   1337
 
@@ -32,7 +30,6 @@
         group:    app
         groups:
           - sudo
-          - docker
         authorized_keys:
           - "{{ lookup('url', 'https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub') }}"
 

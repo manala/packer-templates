@@ -10,20 +10,8 @@
 
     manala_skeleton_name: manala_app
     manala_skeleton_env:  dev
-    manala_skeleton_options_hashes:
-      - platform_options
     manala_skeleton_patterns_hashes:
       - template_patterns
-
-    ############
-    # Platform #
-    ############
-
-    platform_options:
-      systemd: "{{ {
-        'vagrant.virtualbox': True,
-        'docker': False
-      }[platform] }}"
 
     ############
     # Template #
