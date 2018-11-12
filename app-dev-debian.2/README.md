@@ -18,7 +18,7 @@ Debian 7 - amd64
 * Vim 7.4
 * Debfoster 2.7
 * Git 1.9.1
-* Gitsplit
+* Gitsplit 2.0
 * Htop 1.0.1
 * Rsync 3.0.9
 * Curl 7.26.0
