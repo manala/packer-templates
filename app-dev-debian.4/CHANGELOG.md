@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - Remove custom ansible configuration, due to relative blocking updates
   (see: https://github.com/hashicorp/vagrant/pull/9957)
+- Remove docker service support
 
 ## [4.0.2] - 2018-02-07
 ### Removed

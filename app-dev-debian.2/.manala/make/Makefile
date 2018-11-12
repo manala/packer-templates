@@ -47,7 +47,6 @@ MANALA_PACKER_VAR       = \
 	template_author=$(call escape_spaces,$(MANALA_CONTACT)) \
 	template_dist_dir=$(TEMPLATE_DIST_DIR) \
 	manala_dir=$(MANALA_DIR) \
-	platform=$(PLATFORM) \
 	platform_variant=$(PLATFORM_VARIANT) \
 	builder_headless=$(if $(DEBUG),false,true)
 

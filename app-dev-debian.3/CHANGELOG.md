@@ -10,12 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Vagrant required version >= 2.2.0
 - Update Alt Galaxy 1.4.1
 - Update Gitsplit 2.0
-- Update Docker CE 18.06.1
 - Update to debian 8.11.0
 
 ### Removed
 - Remove custom ansible configuration, due to relative blocking updates
   (see: https://github.com/hashicorp/vagrant/pull/9957)
+- Remove docker service support
 
 ## [3.0.13] - 2018-02-07
 ### Removed

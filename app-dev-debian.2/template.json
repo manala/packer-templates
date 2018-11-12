@@ -6,7 +6,6 @@
     "template_author": null,
     "template_dist_dir": null,
     "manala_dir": null,
-    "platform": null,
     "platform_variant": null,
     "builder_headless": "true"
   },
@@ -100,7 +99,7 @@
       "clean_staging_directory": true,
       "galaxy_file": "ansible/roles/requirements.yaml", "galaxycommand": "ansible-galaxy --ignore-certs",
       "extra_arguments": [
-        "--extra-vars \"platform=\\\"{{user `platform`}}\\\" template_description=\\\"{{user `template_description`}}\\\" template_version=\\\"{{user `template_version`}}\\\"\""
+        "--extra-vars \"template_description=\\\"{{user `template_description`}}\\\" template_version=\\\"{{user `template_version`}}\\\"\""
       ],
       "playbook_dir": "ansible",
       "playbook_files": [
