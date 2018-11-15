@@ -10,7 +10,7 @@ Vagrant.configure('2') do |config|
   config.ssh.forward_agent = true
 
   # Vm
-  config.vm.box           = 'app-dev-debian'
+  config.vm.box           = 'app-dev-debian.4'
   config.vm.hostname      = 'app-dev-debian.4.vagrant.virtualbox'
   config.vm.network       'private_network', type: 'dhcp'
   config.vm.define        'localhost' do |localhost| end

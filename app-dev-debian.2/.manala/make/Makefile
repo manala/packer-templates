@@ -56,9 +56,8 @@ export PACKER_CACHE_DIR = $(TEMPLATE_CACHE_DIR)/packer
 # Vagrant #
 ###########
 
-MANALA_VAGRANT_FORCE   := 1
-MANALA_VAGRANT_BOX      = $(TEMPLATE_VAGRANT_BOX)
-MANALA_VAGRANT_BOX_NAME = $(TEMPLATE)
+MANALA_VAGRANT_FORCE := 1
+MANALA_VAGRANT_BOX    = $(TEMPLATE_VAGRANT_BOX)
 
 export VAGRANT_CWD          = $(TEMPLATE_DIR)/vagrant
 export VAGRANT_DOTFILE_PATH = $(TEMPLATE_CACHE_DIR)/vagrant
@@ -110,6 +109,7 @@ SH_HELP = \
 
 SH_HELP += $(call if_in,vagrant.virtualbox,$(TEMPLATE_PLATFORMS),$(call help,sh.vagrant.virtualbox,Open shell on template platform - Vagrant/VirtualBox))
 sh.vagrant.virtualbox: PLATFORM = vagrant.virtualbox
+sh.vagrant.virtualbox: MANALA_VAGRANT_BOX_NAME = $(TEMPLATE).$(call semver_major,$(TEMPLATE_VERSION))
 sh.vagrant.virtualbox:
 	$(call fail_if_not_in,$(PLATFORM),$(TEMPLATE_PLATFORMS),Sh for \"$(PLATFORM)\" platform is not supported)
 	$(call log,Vagrant box add)
