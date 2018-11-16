@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Vagrant required version >= 2.2.1
 - Update Alt Galaxy 1.4.1
 - Update Gitsplit 2.0
+- Update Git 2.19.1
 - Update Debian 9.6.0
 
 ### Removed
