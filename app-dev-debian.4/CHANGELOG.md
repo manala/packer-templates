@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Update VirtualBox Guest Additions 5.2.22
+- Update Ansible 2.6.5
 - Vagrant required version >= 2.2.1
 - Update Alt Galaxy 1.4.1
 - Update Gitsplit 2.0
