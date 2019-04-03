@@ -1,6 +1,6 @@
 #!/bin/sh
 
-printf "[\033[36mManala\033[0m] \033[32mDebian - Apt - Setup - Manala\033[0m\n"
+printf "[\033[36mManala\033[0m] \033[32mDebian - Apt - Setup - Backports\033[0m\n"
 
 # Get debian release (wheezy,jessie,stretch,...)
 RELEASE=$(cat /etc/os-release | sed -n 's/.*VERSION="[0-9] (\(.*\))"/\1/p')
