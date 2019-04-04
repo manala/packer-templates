@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update VirtualBox Guest Additions 6.0.4
 - Vagrant required version >= 2.2.4
 - Update Debian 9.9.0
+- Update Git 2.20.1
 
 ## [4.0.3] - 2018-11-19
 ### Changed

@@ -17,7 +17,7 @@ Debian 9 - amd64
 * Alt Galaxy 1.4.1
 * Vim 8.0
 * Debfoster 2.7
-* Git 2.19.1
+* Git 2.20.1
 * Gitsplit 2.0
 * Htop 2.0.2
 * Rsync 3.1.2
