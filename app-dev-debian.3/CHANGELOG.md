@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update to debian 8.11.1
 - Update Ngrok 2.3.25
 
+### Fixed
+- Debian repositories sources
+
 ## [3.0.14] - 2018-11-19
 ### Changed
 - Update VirtualBox Guest Additions 5.2.22

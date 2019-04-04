@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update Ngrok 2.3.25
 - Update Supervisor 3.3.5
 
+### Fixed
+- Debian repositories sources
+
 ## [4.0.3] - 2018-11-19
 ### Changed
 - Update VirtualBox Guest Additions 5.2.22

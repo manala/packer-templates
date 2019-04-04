@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Vagrant required version >= 2.2.4
 - Update Ngrok 2.3.25
 
+### Fixed
+- Debian repositories sources
+
 ## [2.0.8] - 2018-11-19
 ### Changed
 - Update VirtualBox Guest Additions 5.2.22
