@@ -27,7 +27,7 @@ Debian 7 - amd64
 * MailHog 1.0.0
 * Supervisor 3.3.1
 * Ntp 4.2.6p5
-* Ngrok 2.2.8
+* Ngrok 2.3.25
 * Pre-installed manala ansible roles
   * manala.ansible-galaxy
   * manala.skeleton (with dependencies)

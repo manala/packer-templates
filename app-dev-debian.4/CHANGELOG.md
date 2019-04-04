@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Vagrant required version >= 2.2.4
 - Update Debian 9.9.0
 - Update Git 2.20.1
+- Update Ngrok 2.3.25
 
 ## [4.0.3] - 2018-11-19
 ### Changed
