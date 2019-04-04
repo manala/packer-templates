@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update Debian 9.9.0
 - Update Git 2.20.1
 - Update Ngrok 2.3.25
+- Update Supervisor 3.3.5
 
 ## [4.0.3] - 2018-11-19
 ### Changed

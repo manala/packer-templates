@@ -25,7 +25,7 @@ Debian 9 - amd64
 * Oh-my-zsh
 * Make 4.1
 * MailHog 1.0.0
-* Supervisor 3.3.1
+* Supervisor 3.3.5
 * Ntp 4.2.8
 * Ngrok 2.3.25
 * The Fuck 3.11
