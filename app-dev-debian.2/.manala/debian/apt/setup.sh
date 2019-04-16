@@ -24,7 +24,6 @@ EOF"
 jessie)
   eval "cat > /etc/apt/sources.list << EOF
 deb http://deb.debian.org/debian ${RELEASE} main
-deb http://deb.debian.org/debian ${RELEASE}-updates main
 deb http://security.debian.org/debian-security ${RELEASE}/updates main
 EOF"
   apt-get --quiet update
