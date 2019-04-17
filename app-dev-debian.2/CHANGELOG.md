@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.9] - 2019-05-27
 ### Changed
 - Update VirtualBox Guest Additions 6.0.4
 - Vagrant required version >= 2.2.4

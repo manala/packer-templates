@@ -12,6 +12,6 @@ include .manala/make/Makefile
 
 TEMPLATE             = app-dev-debian
 TEMPLATE_DESCRIPTION = App - Dev - Debian
-TEMPLATE_VERSION     = 3.0.14
+TEMPLATE_VERSION     = 3.0.15
 TEMPLATE_MOUNT_DIR   = /srv/app
 TEMPLATE_PLATFORMS   = vagrant.virtualbox docker
