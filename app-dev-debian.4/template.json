@@ -6,8 +6,7 @@
     "template_author": null,
     "template_dist_dir": null,
     "manala_dir": null,
-    "platform_variant": null,
-    "builder_headless": "true"
+    "platform_variant": null
   },
   "builders": [
     {
@@ -15,7 +14,7 @@
       "type": "virtualbox-iso",
       "guest_os_type": "Debian_64",
       "format": "ovf",
-      "headless": "{{user `builder_headless`}}",
+      "headless": true,
       "iso_url": "http://cdimage.debian.org/mirror/cdimage/release/9.9.0/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
       "iso_checksum_url": "http://cdimage.debian.org/mirror/cdimage/release/9.9.0/amd64/iso-cd/MD5SUMS",
       "iso_checksum_type": "md5",
