@@ -12,8 +12,8 @@ apt-get --quiet --verbose-versions --yes --no-install-recommends install bzip2 d
 
 # Install the virtualbox guest additions
 mkdir -p /mnt/VBoxGuestAdditions
-mount --options loop ~/VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
+mount --options loop,ro ~/VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
 sh /mnt/VBoxGuestAdditions/VBoxLinuxAdditions.run
 umount /mnt/VBoxGuestAdditions
 rm -Rf /mnt/VBoxGuestAdditions
-rm -f VBoxGuestAdditions.iso
+rm -f ~/VBoxGuestAdditions.iso
