@@ -32,6 +32,6 @@ Debian 9 - amd64
 * Exa 0.8.0
 * HTTPie 0.9.8
 * Pre-installed manala ansible roles
-  * manala.ansible-galaxy
+  * manala.ansible_galaxy
   * manala.skeleton (with dependencies)
 * Passwordless app & root accounts
