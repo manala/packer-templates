@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Change manala ansible galaxy role references
 
 ## [2.0.9] - 2019-05-27
 ### Changed

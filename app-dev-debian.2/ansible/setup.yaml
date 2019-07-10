@@ -82,7 +82,7 @@
     ###########################
 
     manala_ansible_galaxy_roles:
-      - manala.ansible-galaxy
+      - manala.ansible_galaxy
       - manala.skeleton
 
   roles:
@@ -90,4 +90,4 @@
     - role: manala.accounts
     - role: manala.locales
     - role: manala.ansible
-    - role: manala.ansible-galaxy
+    - role: manala.ansible_galaxy
