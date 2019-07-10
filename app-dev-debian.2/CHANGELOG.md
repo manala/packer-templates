@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Change manala ansible galaxy role references
+- Vagrant required version >= 2.2.5
 
 ## [2.0.9] - 2019-05-27
 ### Changed
