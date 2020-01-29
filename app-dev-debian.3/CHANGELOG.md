@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Update Exa 0.9.0
 - Update VirtualBox Guest Additions 6.0.16
+- Update Ngrok 2.3.35
 
 ## [3.0.16] - 2019-07-10
 ### Changed

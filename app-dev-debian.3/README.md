@@ -27,7 +27,7 @@ Debian 8 - amd64
 * MailHog 1.0.0
 * Supervisor 3.3.1
 * Ntp 4.2.6
-* Ngrok 2.3.25
+* Ngrok 2.3.35
 * The Fuck 3.11
 * Exa 0.9.0
 * HTTPie 0.9.8

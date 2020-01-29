@@ -27,7 +27,7 @@ Debian 9 - amd64
 * MailHog 1.0.0
 * Supervisor 3.3.5
 * Ntp 4.2.8
-* Ngrok 2.3.25
+* Ngrok 2.3.35
 * The Fuck 3.11
 * Exa 0.9.0
 * HTTPie 0.9.8
