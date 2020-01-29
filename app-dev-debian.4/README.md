@@ -28,7 +28,7 @@ Debian 9 - amd64
 * Supervisor 3.3.5
 * Ntp 4.2.8
 * Ngrok 2.3.35
-* The Fuck 3.11
+* The Fuck 3.29
 * Exa 0.9.0
 * HTTPie 0.9.8
 * Pre-installed manala ansible roles
