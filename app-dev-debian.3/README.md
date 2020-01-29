@@ -29,7 +29,7 @@ Debian 8 - amd64
 * Ntp 4.2.6
 * Ngrok 2.3.25
 * The Fuck 3.11
-* Exa 0.8.0
+* Exa 0.9.0
 * HTTPie 0.9.8
 * Pre-installed manala ansible roles
   * manala.ansible_galaxy
