@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [2.0.10] - 2019-07-10
 ### Changed
 - Change manala ansible galaxy role references
 - Vagrant required version >= 2.2.5
