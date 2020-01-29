@@ -96,7 +96,8 @@
     ] },
     { "type": "ansible-local",
       "clean_staging_directory": true,
-      "galaxy_file": "ansible/roles/requirements.yaml", "galaxycommand": "ansible-galaxy --ignore-certs",
+      "galaxy_file": "ansible/roles/requirements.yaml",
+      "galaxy_command": "ansible-galaxy --ignore-certs",
       "extra_arguments": [
         "--extra-vars \"template_description=\\\"{{user `template_description`}}\\\" template_version=\\\"{{user `template_version`}}\\\"\""
       ],
