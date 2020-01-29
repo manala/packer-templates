@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - Update Exa 0.9.0
+- Update Debian 9.11.0
 
 ## [4.0.5] - 2019-07-10
 ### Changed
