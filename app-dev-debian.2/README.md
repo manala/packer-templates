@@ -12,7 +12,7 @@ Debian 7 - amd64
 
 * Openssh-server
 * Nfs support (nfs-common, cachefilesd)
-* VirtualBox Guest Additions 6.0.4 (dkms, linux-headers)
+* VirtualBox Guest Additions 6.0.16 (dkms, linux-headers)
 * Ansible 2.6.5
 * Alt Galaxy 1.4.1
 * Vim 7.4
