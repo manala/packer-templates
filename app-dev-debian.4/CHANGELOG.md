@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [4.0.6] - 2020-01-29
 ### Changed
 - Update Exa 0.9.0
 - Update Debian 9.11.0

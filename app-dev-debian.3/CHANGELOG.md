@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [3.0.17] - 2020-01-29
 ### Changed
 - Update Exa 0.9.0
 - Update VirtualBox Guest Additions 6.0.16
