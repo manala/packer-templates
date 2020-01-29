@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update VirtualBox Guest Additions 6.0.16
 - Update Ngrok 2.3.35
 - Update The Fuck 3.29
+- Update HTTPie 1.0.3
 
 ## [4.0.5] - 2019-07-10
 ### Changed

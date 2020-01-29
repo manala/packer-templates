@@ -30,7 +30,7 @@ Debian 9 - amd64
 * Ngrok 2.3.35
 * The Fuck 3.29
 * Exa 0.9.0
-* HTTPie 0.9.8
+* HTTPie 1.0.3
 * Pre-installed manala ansible roles
   * manala.ansible_galaxy
   * manala.skeleton (with dependencies)
