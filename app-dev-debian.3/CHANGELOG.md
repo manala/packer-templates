@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Update Ngrok 2.3.35
 - Update The Fuck 3.29
 - Update HTTPie 1.0.3
+- Vagrant required version >= 2.2.7
 
 ## [3.0.16] - 2019-07-10
 ### Changed

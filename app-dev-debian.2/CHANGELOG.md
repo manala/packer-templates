@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Update VirtualBox Guest Additions 6.0.16
 - Update Ngrok 2.3.35
+- Vagrant required version >= 2.2.7
 
 ## [2.0.10] - 2019-07-10
 ### Changed
