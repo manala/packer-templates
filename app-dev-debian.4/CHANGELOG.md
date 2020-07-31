@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - Alt Galaxy
 
+### Changed
+- Update Debian 9.13.0
 ## [4.0.6] - 2020-01-29
 ### Changed
 - Update Exa 0.9.0
