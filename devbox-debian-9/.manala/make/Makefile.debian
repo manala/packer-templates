@@ -1,5 +1,0 @@
-###############
-# Directories #
-###############
-
-MANALA_DEBIAN_DIR := $(MANALA_DIR)/debian
