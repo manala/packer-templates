@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Packer 1.5.1+
+* Packer 1.6.1+
 
 ## Description
 
