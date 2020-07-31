@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 - Alt Galaxy
 
+### Changed
+- Update VirtualBox Guest Additions 6.1.12
 ## [3.0.17] - 2020-01-29
 ### Changed
 - Update Exa 0.9.0

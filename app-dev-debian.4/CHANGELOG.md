@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Update Debian 9.13.0
+- Update VirtualBox Guest Additions 6.1.12
 ## [4.0.6] - 2020-01-29
 ### Changed
 - Update Exa 0.9.0
