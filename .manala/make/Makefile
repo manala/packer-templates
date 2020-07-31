@@ -1,4 +1,4 @@
-.PHONY: split sync
+.PHONY: sync
 
 ##########
 # Manala #
@@ -7,21 +7,7 @@
 MANALA_MAKE_DIR := $(abspath $(patsubst %/Makefile,%,$(lastword $(MAKEFILE_LIST))))
 
 include \
-	$(MANALA_MAKE_DIR)/Makefile.manala \
-	$(MANALA_MAKE_DIR)/Makefile.gitsplit
-
-#########
-# Split #
-#########
-
-MANALA_HELP += $(SPLIT_HELP)\n
-
-SPLIT_HELP = \
-	$(call help_section,Split) \
-	$(call help,split,Split git repositories)
-
-split:
-	$(call gitsplit)
+	$(MANALA_MAKE_DIR)/Makefile.manala
 
 ########
 # Sync #
