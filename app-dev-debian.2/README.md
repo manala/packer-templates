@@ -14,7 +14,6 @@ Debian 7 - amd64
 * Nfs support (nfs-common, cachefilesd)
 * VirtualBox Guest Additions 6.0.16 (dkms, linux-headers)
 * Ansible 2.6.5
-* Alt Galaxy 1.4.1
 * Vim 7.4
 * Debfoster 2.7
 * Git 1.9.1

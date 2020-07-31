@@ -13,4 +13,4 @@ wheezy)
   ;;
 esac
 
-apt-get --quiet --verbose-versions --yes --no-install-recommends install ansible alt-galaxy
+apt-get --quiet --verbose-versions --yes --no-install-recommends install ansible
