@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [4.0.6] - 2020-07-31
+## [4.0.7] - 2020-07-31
 ### Removed
 - Alt Galaxy
 
